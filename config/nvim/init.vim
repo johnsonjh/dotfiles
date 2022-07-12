@@ -3,9 +3,12 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Copying and distribution of this file, with or without modification, are
-" permitted in any medium without royalty provided the copyright notice and
-" this notice are preserved. This file is offered as-is, without any warranty.
+" Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+"
+" Copying and distribution of this file, with or without modification,
+" are permitted in any medium without royalty provided the copyright
+" notice and this notice are preserved.  This file is offered "AS-IS",
+" without any warranty.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -60,8 +63,8 @@ set switchbuf=uselast
 set tabstop=4
 set termguicolors
 set t_ut=
-set timeoutlen=225
-set updatetime=115
+set timeoutlen=350
+set updatetime=100
 set wildignore=*.a,*.so,*.o,*.obj,*.lib,*.dll,a.out,core,*.bak,*.exe,*~
 set wildmenu
 

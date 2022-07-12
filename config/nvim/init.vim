@@ -615,6 +615,7 @@ nmap     ga                  <Plug>(EasyAlign)
 nmap     +                   <Plug>(choosewin)
 nmap     s                   <Plug>(easymotion-s)
 nmap     <C-w>m              <Plug>(git-messenger)
+nmap     <Leader>gm          <Plug>(git-messenger)
 nnoremap <F4>                :UndotreeToggle<CR>
 nnoremap <F5>                :NERDTreeToggle<CR>
 nnoremap <F6>                :TagbarToggle<CR>

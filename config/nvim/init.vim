@@ -232,6 +232,9 @@ let g:rainbow_conf = {
 
 let g:rehash256 = 1
 
+let g:shfmt_extra_args  = '-i 4 -bn -ci -sr -fn'
+let g:shfmt_fmt_on_save = 0
+
 let g:task_rc_override = 'rc.defaultheight=0'
 let g:task_rc_override = 'rc.defaultwidth=0'
 
@@ -337,6 +340,9 @@ try
     Plug 'https://github.com/glts/vim-magnum.git'
     Plug 'https://github.com/bfrg/vim-cpp-modern.git'
     Plug 'https://github.com/glts/vim-radical.git'
+    Plug 'https://github.com/z0mbix/vim-shfmt.git', {
+       \   'for': 'sh'
+       \ }
     Plug 'https://github.com/glts/vim-textobj-comment.git'
     Plug 'https://github.com/godlygeek/tabular.git'
     Plug 'https://github.com/habamax/vim-asciidoctor.git'

@@ -1,0 +1,111 @@
+#!/usr/bin/env zsh
+# vim: set ts=4 sw=4 tw=144 expandtab colorcolumn=144 :
+# SPDX-License-Identifier: FSFAP
+
+##########################################################################################
+#
+# Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+#
+# Copying and distribution of this file, with or without modification, are permitted in
+# any medium without royalty provided the copyright notice and this notice are preserved.
+# This file is offered "AS-IS", without any warranty.
+#
+##########################################################################################
+
+# socket status summary
+ss -s
+
+##########################################################################################
+
+# network interface summary
+netstat -i                                                                                                                                     \
+    | grep -iaE '(Iface|cjd.|ygg.*|eth[0-9]|tun[0-9]|enp[0-9]s[0-9]|wlp[0-9]s[0-9]|wifi[0-9]|wlan[0-9]|dockler[0-9]|wireguard[0-9]|wgs[0-9])'  \
+    | grep -iav '^Kernel Interface table'                                                                                                      \
+    | column -t
+
+printf '%s\n' ""
+
+##########################################################################################
+
+# netstat red flags
+netstat -asn                              \
+    | grep -iaE '(listen|overflow|drop)'  \
+    | tr -s ' '                           \
+    | awk '{ printf "%1-s\n", $0; }'      \
+    | colrm 1 1                           \
+    | grep -v '.* [0-9]\+.* 0 .* 0 .* 0 .* 0 .* 0 .* 0 .* 0 .* 0 .*$'
+
+printf '%s\n' ""
+
+##########################################################################################
+
+# netstat sorted by status
+(
+    netstat -an | awk  \
+        '/^tcp/ {
+            A[$(NF)]++
+        }
+        END {
+            for (I in A) {
+                printf "%5d %s\n", A[I], I
+            }
+        }' | sort -k 2
+
+    netstat -an | awk -v start=1 -v end=65535  \
+        ' $NF ~ /TIME_WAIT|ESTABLISHED/ && $4 !~ /127\.0\.0\.1/ {
+            if ($1 ~ /\./) {
+                sip=$1
+            }
+            else { sip=$4 }
+            if ( sip ~ /:/ ) {
+                d=2
+            }
+            else {
+                d=5
+            }
+            split( sip, a, /:|\./ )
+            if ( a[d] >= start && a[d] <= end ) {
+                ++connections;
+            }
+        }
+        END {
+            print "\n" connections" TOTAL CONNECTIONS"
+        }'
+) | column -t
+
+printf '%s\n' ""
+
+##########################################################################################
+
+# syn depth
+printf '%s' "Approx SYN-RECV depth: "
+ss -Hn state syn-recv sport = :\*      \
+    | grep '^.*:.*$'                   \
+    | wc -l
+
+printf '%s' "Approx SYN-SENT depth: "
+ss -Hn state syn-sent sport = :\*      \
+    | grep '^.*:.*$'                   \
+    | wc -l
+
+printf '%s\n' ""
+
+##########################################################################################
+
+# tcp queues
+printf '%s' "TCP send queue depths: "
+ss -Htanl                               \
+    | awk '{ print $3 }'                \
+    | sort -n                           \
+    | uniq -c                           \
+    | sort -n                           \
+    | tr -s " "                         \
+    | awk '{ printf "%1-s\n", $0; }'    \
+    | colrm 1 1                         \
+    | tr ' ' '*'                        \
+    | xargs printf ' %s'                \
+    | sed -e 's/ /\, /g' -e 's/^, //g'
+
+printf '%s\n' ""
+
+##########################################################################################

@@ -9,7 +9,7 @@ master them as I must master my life.
 
 Without me, my dotfiles are useless.  Without my dotfiles, I am
 useless.  I must maintain my dotfiles true.  I must have better
-dotfiles than my enemy who is trying to pwn me.  I must own him
+dotfiles than my enemy who is trying to pwn me.  I must pwn him
 before he pwns me.  I will ...
 
 My dotfiles and I know that what counts on UNIX is not the

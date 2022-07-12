@@ -37,7 +37,7 @@
 [alias]
 	ls                = log --oneline
 	logs              = log --show-signature
-	pushall           = "!f() { /home/jhj/.local/bin/gpall \"${@}\"; }; f"
+	pushall           = "!f() { ${HOME:-}/.local/bin/gpall \"${@}\"; }; f"
 	push-all          = pushall
 	bclean            = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 	xmr               = !sh -xc \"git fetch \\$1 merge-requests/\\$2/head:mr-\\$1-\\$2 && git checkout mr-\\$1-\\$2\" -

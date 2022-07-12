@@ -235,6 +235,8 @@ let g:rehash256 = 1
 let g:shfmt_extra_args  = '-i 4 -bn -ci -sr -fn'
 let g:shfmt_fmt_on_save = 0
 
+let g:shellcheck_directive_highlight = 1
+
 let g:task_rc_override = 'rc.defaultheight=0'
 let g:task_rc_override = 'rc.defaultwidth=0'
 
@@ -323,6 +325,7 @@ try
       Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
       Plug 'https://github.com/Shougo/deoplete.nvim.git'
     endif
+    Plug 'https://github.com/a5ob7r/shellcheckrc.vim.git'
     Plug 'https://github.com/airblade/vim-gitgutter.git'
     Plug 'https://github.com/brooth/far.vim.git'
     Plug 'https://github.com/chumakd/scratch.vim.git'
@@ -336,13 +339,10 @@ try
          \   'do': ':GoUpdateBinaries'
          \ }
     endif
+    Plug 'https://github.com/bfrg/vim-cpp-modern.git'
     Plug 'https://github.com/farmergreg/vim-lastplace.git'
     Plug 'https://github.com/glts/vim-magnum.git'
-    Plug 'https://github.com/bfrg/vim-cpp-modern.git'
     Plug 'https://github.com/glts/vim-radical.git'
-    Plug 'https://github.com/z0mbix/vim-shfmt.git', {
-       \   'for': 'sh'
-       \ }
     Plug 'https://github.com/glts/vim-textobj-comment.git'
     Plug 'https://github.com/godlygeek/tabular.git'
     Plug 'https://github.com/habamax/vim-asciidoctor.git'
@@ -387,7 +387,7 @@ try
     Plug 'https://github.com/rbgrouleff/bclose.vim.git'
     Plug 'https://github.com/rhysd/committia.vim.git'
     Plug 'https://github.com/rhysd/conflict-marker.vim.git'
-    Plug 'https://github.com/rhysd/git-messenger.vim'
+    Plug 'https://github.com/rhysd/git-messenger.vim.git'
     Plug 'https://github.com/rickhowe/diffchar.vim.git'
     Plug 'https://github.com/shumphrey/fugitive-gitlab.vim.git'
     Plug 'https://github.com/SirVer/ultisnips.git'
@@ -416,6 +416,9 @@ try
     Plug 'https://github.com/wellle/tmux-complete.vim.git'
     Plug 'https://github.com/xarthurx/taskwarrior.vim.git'
     Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+    Plug 'https://github.com/z0mbix/vim-shfmt.git', {
+       \   'for': 'sh'
+       \ }
     Plug 'https://tpope.io/vim/commentary.git'
     Plug 'https://tpope.io/vim/dispatch.git'
     Plug 'https://tpope.io/vim/eunuch.git'

@@ -58,10 +58,16 @@ set encoding=utf-8
 set ruler
 set shiftwidth=4
 set showcmd
-set signcolumn=number
+try
+  set signcolumn=number
+  catch
+endtry
 set smartcase
 set smarttab
-set switchbuf=uselast
+try
+  set switchbuf=uselast
+  catch
+endtry
 set tabstop=4
 set termguicolors
 set t_ut=

@@ -1,0 +1,86 @@
+# vim: set ft=tmux ts=4 sw=4 tw=132 noexpandtab colorcolumn=132 :
+# SPDX-License-Identifier: FSFAP
+
+##########################################################################################
+#
+# Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+#
+# Copying and distribution of this file, with or without modification, are permitted in
+# any medium without royalty provided the copyright notice and this notice are preserved.
+# This file is offered "AS-IS", without any warranty.
+#
+##########################################################################################
+
+[user]
+	email             = trnsz@pobox.com
+	signingKey        = AFAD6B15B7927C37801B1A0DEDBCB3EB023BC7ED
+	name              = Jeffrey H. Johnson
+[color]
+	ui                = true
+[merge]
+	tool              = bc4
+	ff                = false
+	branchdesc        = true
+	conflictstyle     = diff3
+[mergetool]
+	path              = nvim
+[mergetool "vimdiff3"]
+	cmd               = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[push]
+	default           = matching
+	followTags        = true
+	gpgSign           = if-asked
+[commit]
+	gpgSign           = true
+[gpg]
+	program           = gpg2
+[alias]
+	ls                = log --oneline
+	logs              = log --show-signature
+	pushall           = "!f() { /home/jhj/.local/bin/gpall \"${@}\"; }; f"
+	push-all          = pushall
+	bclean            = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+	xmr               = !sh -xc \"git fetch \\$1 merge-requests/\\$2/head:mr-\\$1-\\$2 && git checkout mr-\\$1-\\$2\" -
+[core]
+	trustctime        = false
+	pager             = delta
+	editor            = nvim
+	notesRef          = true
+	symlinks          = true
+[delta]
+	navigate          = true
+	line-numbers      = true
+	side-by-side      = false
+	dark              = true
+	relative-paths    = true
+[interactive]
+	diffFilter        = delta --color-only
+[fetch]
+	recurseSubmodules = true
+[transfer]
+	fsckObjects       = false
+[format]
+	from              = true
+	coverletter       = false
+[pull]
+	ff                = false
+	rebase            = true
+[receive]
+	updateServerInfo  = true
+	keepAlive         = 1
+[status]
+	showStash         = true
+	showUntrackFiles  = all
+	submoduleSummary  = true
+[submodule]
+	recurse           = true
+[init]
+	defaultBranch     = master
+[diff]
+	context           = 10
+	tool              = bc4
+	colorMoved        = default
+[http]
+	maxRequestBuffer  = 128M
+[feature]
+	experimental      = true

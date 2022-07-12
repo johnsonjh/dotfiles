@@ -24,8 +24,8 @@ my dotfiles clean and ready, even as I am clean and ready.
 We will become part of each other.  We will ...
 
 Before God, I swear this creed.  My dotfiles and I are the
-defenders of system.  We are the masters of our enemy.  We
-are the saviors of my life.
+defenders of my system.  We are the masters of our enemy.
+We are the saviors of my life.
 
 So be it, until victory is ours and there is no enemy,
 but peace!

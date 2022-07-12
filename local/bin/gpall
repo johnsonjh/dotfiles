@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# vim: set ft=sh ts=2 sw=2 tw=79 expandtab colorcolumn=79 :
+# vim: set ft=sh ts=4 sw=4 tw=79 expandtab colorcolumn=79 :
 # SPDX-License-Identifier: FSFAP
 
 ###############################################################################
@@ -23,45 +23,45 @@ export GARGS="\"${*}\""
 ###############################################################################
 
 if [ "${GARGS:?}" = '""' ]; then
-  unset GARGS
+    unset GARGS
 else
-  GARGS=$(
-    printf '%s' "${GARGS:?}"     \
-      | sed 's/.$//; s/^.//'     \
-      | grep -E -sv "${CLEAN:?}" \
-      || {
-        printf '%s' '__ERROR__'
-      }
-  )
+    GARGS=$(
+        printf '%s' "${GARGS:?}"       \
+            | sed 's/.$//; s/^.//'     \
+            | grep -E -sv "${CLEAN:?}" \
+            || {
+                printf '%s' '__ERROR__'
+            }
+    )
 fi
 
 ###############################################################################
 
 if [ -n "${GARGS:-}" ]; then
-  if [ "${GARGS:-}" = "__ERROR__" ]; then
-    printf '%s\n' "Error: Invalid arguments."
-    exit 1
-  else
-    if [ "${GARGS:-}" = "-" ] \
-      || [ "${GARGS:-}" = "'" ]; then
-      printf '%s\n' "Error: Invalid argument."
-      exit 1
+    if [ "${GARGS:-}" = "__ERROR__" ]; then
+        printf '%s\n' "Error: Invalid arguments."
+        exit 1
     else
-      export ALL="--all"
+        if [ "${GARGS:-}" = "-" ] \
+            || [ "${GARGS:-}" = "'" ]; then
+            printf '%s\n' "Error: Invalid argument."
+            exit 1
+        else
+            export ALL="--all"
+        fi
     fi
-  fi
 else
-  unset ALL
+    unset ALL
 fi
 
 ###############################################################################
 
-git remote                   \
-  | grep -E -sv "${CLEAN:?}" \
-  | xargs -I '{}' -s 50000   \
-    printf '%s\n' '{}'       \
-  | xargs -I '{}' -s 100000  \
-    sh -c "printf \"%s\n\"   \
+git remote                     \
+    | grep -E -sv "${CLEAN:?}" \
+    | xargs -I '{}' -s 50000   \
+        printf '%s\n' '{}'     \
+    | xargs -I '{}' -s 100000  \
+        sh -c "printf \"%s\n\" \
              git\ push\ -u\ \"${ALL:-}\"\ \"{}\"\ \"${GARGS:-}\"
 		   | sh -x && printf \"%s\n\" git\ push\ --tags\ \"{}\"\ \"${GARGS:-}\"
 		   | sh -x"

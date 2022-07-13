@@ -274,11 +274,11 @@ let g:committia_open_only_vim_starting = 1
 
 let g:lastplace_ignore_buftype =
   \  "quickfix,nofile,help,nerdtree,tagbar,context,"
-  \  ."buffergator,filebeagle,fugitiveblame,diff,vim"
+  \   ."buffergator,filebeagle,fugitiveblame,diff,vim"
 
 if !has('nvim')
-  let html_use_css      = 1
-  let c_comment_strings = 1
+  let   html_use_css      = 1
+  let   c_comment_strings = 1
   unlet c_comment_strings
 endif
 
@@ -292,7 +292,8 @@ endif
 
 function! AppendModeline()
   let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
-    \  &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+    \   &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no'
+    \ )
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
   call append(line("$"), l:modeline)
 endfunction
@@ -451,11 +452,13 @@ call SourceIfExists('/usr/share/gtags/gtags-cscope.vim')
 
 if has('nvim')
   call SourceIfExists(expand(
-     \  '$HOME/.local/share/nvim/plugged/ifdef-heaven.vim/ifdef-heaven.vim'))
+     \  '$HOME/.local/share/nvim/plugged/ifdef-heaven.vim/ifdef-heaven.vim')
+     \ )
 else
   try
     call SourceIfExists(expand(
-       \  '$HOME/.vim/plugged/ifdef-heaven.vim/ifdef-heaven.vim'))
+       \  '$HOME/.vim/plugged/ifdef-heaven.vim/ifdef-heaven.vim')
+       \ )
   catch
   endtry
 endif
@@ -524,13 +527,14 @@ function! s:gitCommitList()
   let git      = 'G'. git[1:]
   return map(commits, '{
        \   "line": matchstr(v:val, "\\s\\zs.*"),
-       \   "cmd":  "'. git .' show ". matchstr(v:val, "^\\x\\+")
+       \    "cmd":  "'. git .' show ". matchstr(v:val, "^\\x\\+")
        \ }')
 endfunction
 
 try
   let g:vimversion_pretty =
-    \  matchstr(execute('version'), '[^\n.]\?[Vv][Ii][Mm][^\n]*')
+    \  matchstr(execute('version'),
+    \   '[^\n.]\?[Vv][Ii][Mm][^\n]*')
 catch
   try
     let g:vimversion_pretty =
@@ -550,8 +554,8 @@ let g:startify_custom_header = split(system(
   \   ("(exec 2> /dev/null;printf '[%s@%s] %s\\n%s\\n'
   \    \"$( whoami )\" \"$( hostname )\" \"$( uname -mrs )\"
   \     \"$( printf '%s\\n' '".vimversion_pretty."' )\")")
-  \   ."| awk '{ $1=$1 };1' 2> /dev/null | grep -v '^$' 2> /dev/null"
-  \   ."| awk '{ print \"   \"$0 }' 2> /dev/null"), '\n'
+  \      ."| awk '{ $1=$1 };1' 2> /dev/null | grep -v '^$' 2> /dev/null"
+  \       ."| awk '{ print \"   \"$0 }' 2> /dev/null"), '\n'
   \ )
 
 let g:startify_change_to_dir       = 0
@@ -691,18 +695,22 @@ else
     autocmd VimEnter * Alias w!! SudaWrite
     if has('nvim')
       autocmd FileType c call SourceIfExists(expand(
-         \     '$HOME/.local/share/nvim/plugged/'
-         \      .'vim-cpp-modern/after/syntax/c.vim'))
+            \   '$HOME/.local/share/nvim/plugged/'
+            \   .'vim-cpp-modern/after/syntax/c.vim')
+            \ )
       autocmd FileType cpp call SourceIfExists(expand(
-         \     '$HOME/.local/share/nvim/plugged/'
-         \      .'vim-cpp-modern/after/syntax/cpp.vim'))
+            \   '$HOME/.local/share/nvim/plugged/'
+            \   .'vim-cpp-modern/after/syntax/cpp.vim')
+            \ )
     else
       autocmd FileType c call SourceIfExists(expand(
-         \     '$HOME/.vim/plugged/'
-         \      .'vim-cpp-modern/after/syntax/c.vim'))
+            \   '$HOME/.vim/plugged/'
+            \   .'vim-cpp-modern/after/syntax/c.vim')
+            \ )
       autocmd FileType cpp call SourceIfExists(expand(
-         \     '$HOME/.vim/plugged/'
-         \      .'vim-cpp-modern/after/syntax/cpp.vim'))
+            \   '$HOME/.vim/plugged/'
+            \   .'vim-cpp-modern/after/syntax/cpp.vim')
+            \ )
     endif
   augroup END
 endif

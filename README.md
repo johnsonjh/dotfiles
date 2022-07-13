@@ -1,5 +1,7 @@
 # dotfiles
 
+## Overview
+
 These are my dotfiles. There are many like them, but these
 are mine.
 
@@ -29,3 +31,16 @@ We are the saviors of my life.
 
 So be it, until victory is ours and there is no enemy,
 but peace!
+
+## Platforms
+
+These dotfiles are regularly used on:
+
+* AIX 7.2+
+* Darwin 21.2 (macOS 12.1)
+* FreeBSD 13.1
+* Linux
+* NetBSD 9.2
+* OpenBSD 7.1
+* OpenIndiana
+* Solaris 11.4

@@ -217,9 +217,23 @@ let g:PaperColor_Theme_Options = {
   \   }
   \ }
 
-let g:pandoc#after#modules#enabled = [
-  \   "ultisnips"
-  \ ]
+try
+  if !exists('g:osenv')
+    if has('win64') || has('win32') || has('win16')
+      let g:osenv = 'WINDOWS'
+    else
+      let g:osenv = toupper(substitute(system('uname'), '\n', '', ''))
+    endif
+  endif
+catch
+  let g:osenv = 'UNKNOWN'
+endtry
+
+if (g:osenv != 'AIX')
+  let g:pandoc#after#modules#enabled = [
+    \   "ultisnips"
+    \ ]
+endif
 
 let g:rainbow_active = 1
 
@@ -248,7 +262,9 @@ let g:shellcheck_directive_highlight = 1
 let g:task_rc_override = 'rc.defaultheight=0'
 let g:task_rc_override = 'rc.defaultwidth=0'
 
-let g:UltiSnipsEditSplit = "vertical"
+if (g:osenv != 'AIX')
+  let g:UltiSnipsEditSplit = "vertical"
+endif
 
 let g:vim_markdown_conceal             = 0
 let g:vim_markdown_conceal_code_blocks = 0
@@ -314,18 +330,6 @@ if has("persistent_undo")
 endif
 
 autocmd SwapExists * let v:swapchoice = "o"
-
-try
-  if !exists('g:osenv')
-    if has('win64') || has('win32') || has('win16')
-      let g:osenv = 'WINDOWS'
-    else
-      let g:osenv = toupper(substitute(system('uname'), '\n', '', ''))
-    endif
-  endif
-catch
-  let g:osenv = 'UNKNOWN'
-endtry
 
 call plug#begin()
   if has('nvim')
@@ -410,7 +414,9 @@ call plug#begin()
   Plug 'https://github.com/rhysd/git-messenger.vim.git'
   Plug 'https://github.com/rickhowe/diffchar.vim.git'
   Plug 'https://github.com/shumphrey/fugitive-gitlab.vim.git'
-  Plug 'https://github.com/SirVer/ultisnips.git'
+  if (g:osenv != 'AIX')
+    Plug 'https://github.com/SirVer/ultisnips.git'
+  endif
   Plug 'https://github.com/skywind3000/vim-preview.git'
   Plug 'https://github.com/sodapopcan/vim-twiggy.git'
   Plug 'https://github.com/szw/vim-maximizer.git'

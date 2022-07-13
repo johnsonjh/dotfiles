@@ -315,6 +315,18 @@ endif
 
 autocmd SwapExists * let v:swapchoice = "o"
 
+try
+  if !exists('g:osenv')
+    if has('win64') || has('win32') || has('win16')
+      let g:osenv = 'WINDOWS'
+    else
+      let g:osenv = toupper(substitute(system('uname'), '\n', '', ''))
+    endif
+  endif
+catch
+  let g:osenv = 'UNKNOWN'
+endtry
+
 call plug#begin()
   if has('nvim')
     Plug 'https://github.com/chentoast/marks.nvim.git'

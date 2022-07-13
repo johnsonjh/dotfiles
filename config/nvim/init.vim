@@ -407,9 +407,7 @@ call plug#begin()
   Plug 'https://github.com/preservim/nerdtree.git'
   Plug 'https://github.com/preservim/tagbar.git'
   Plug 'https://github.com/preservim/vim-markdown.git'
-  if (g:osenv != 'AIX')
-    Plug 'https://github.com/preservim/vim-textobj-quote'
-  endif
+  Plug 'https://github.com/preservim/vim-textobj-quote'
   Plug 'https://github.com/rbgrouleff/bclose.vim.git'
   Plug 'https://github.com/rhysd/committia.vim.git'
   Plug 'https://github.com/rhysd/conflict-marker.vim.git'

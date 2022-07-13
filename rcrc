@@ -12,4 +12,4 @@
 #
 ###############################################################################
 
-EXCLUDES="README.md,install.sh"
+EXCLUDES=".README.md,README.md,.install.sh,install.sh"

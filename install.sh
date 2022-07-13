@@ -151,11 +151,9 @@ test "${HASRUN:?}" -eq 1 2> "/dev/null" && ${RCUP:?}
 # Reset NeoVim and Vim configuration
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   {
-    printf '%s\n' "Resetting NeoVim configuration ..."
     rm -rf "${HOME:?}"/.local/share/nvim > "/dev/null" 2>&1
     rm -rf "${HOME:?}"/.nvimundo > "/dev/null" 2>&1
     rm -rf "${HOME:?}"/.nvimundo-session > "/dev/null" 2>&1
-    printf '%s\n' "Resetting NeoVim configuration ..."
     rm -rf "${HOME:?}"/.vim > "/dev/null" 2>&1
     rm -rf "${HOME:?}"/.vimundo > "/dev/null" 2>&1
     rm -rf "${HOME:?}"/.vimundo-session > "/dev/null" 2>&1

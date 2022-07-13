@@ -145,11 +145,7 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   }
 
 # rcup
-test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
-  {
-    printf '%s\n' "Running rcup -v ..."
-    ${RCUP:?} -v
-  }
+test "${HASRUN:?}" -eq 0 2> "/dev/null" && ${RCUP:?} -v
 test "${HASRUN:?}" -eq 1 2> "/dev/null" && ${RCUP:?}
 
 # Reset NeoVim and Vim configuration
@@ -184,12 +180,14 @@ $(command -v go) "version" < "/dev/null" 2> "/dev/null" |
   }
 
 # Install vim-plug for NeoVim
-${CURL:?} -fsSLo --create-dirs \
+mkdir -p "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PLUGDST:?}"
+${CURL:?} -fLo \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PLUGDST:?} \
   "${PLUGURL:?}"
 
 # Install vim-plug for Vim
-${CURL:?} -fsSLo --create-dirs \
+mkdir -p "${HOME:?}"/.vim/"${PLUGDST:?}"
+${CURL:?} -fLo \
   "${HOME:?}"/.vim/${PLUGDST:?} \
   "${PLUGURL:?}"
 

@@ -235,9 +235,9 @@ if (g:osenv != 'AIX')
     \ ]
 endif
 
-let g:plug_threads = 2
+let g:plug_threads = 1
 let g:plug_timeout = 120
-let g:plug_retries = 3
+let g:plug_retries = 4
 let g:plug_shallow = 1
 let g:plug_window = 'new'
 

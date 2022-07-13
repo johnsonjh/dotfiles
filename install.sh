@@ -74,8 +74,8 @@ PATH="${HOME:?}"/.local/bin:"${HOME:?}"/bin:"${PATH:?}"
 PATH="$(
   printf '%s\n' "${PATH:?}" |
     tr ':' '\n' | awk '!x[$0]++;' |
-    awk '{ system("test -d \""$0"\" && printf \"%s\" \""$0"\":"); }' |
-    sed 's/:$//' | tr -s '/'
+      awk '{ system("test -d \""$0"\" && printf \"%s\" \""$0"\":"); }' |
+        sed 's/:$//' | tr -s '/'
 )"
 
 ################################################################################
@@ -130,8 +130,8 @@ test -z "${VIM:-}" &&
   {
     VIM="$(command -v "vim9" 2> "/dev/null" ||
       command -v "vim8" 2> "/dev/null" ||
-      command -v "vim" 2> "/dev/null")" ||
-      true
+        command -v "vim" 2> "/dev/null")" ||
+          true
   }
 
 # Require NeoVim or Vim
@@ -176,18 +176,17 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   }
 
 # rcup
-test "${HASRUN:?}" -eq 0 2> "/dev/null" && ${RCUP:?} -v
-test "${HASRUN:?}" -eq 1 2> "/dev/null" && ${RCUP:?}
+${RCUP:?}
 
 # Reset NeoVim and Vim configuration
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   {
     rm -rf "${HOME:?}"/.local/share/nvim > "/dev/null" 2>&1
-    rm -rf "${HOME:?}"/.nvimundo > "/dev/null" 2>&1
+    rm -rf "${HOME:?}"/.nvimundo         > "/dev/null" 2>&1
     rm -rf "${HOME:?}"/.nvimundo-session > "/dev/null" 2>&1
-    rm -rf "${HOME:?}"/.vim > "/dev/null" 2>&1
-    rm -rf "${HOME:?}"/.vimundo > "/dev/null" 2>&1
-    rm -rf "${HOME:?}"/.vimundo-session > "/dev/null" 2>&1
+    rm -rf "${HOME:?}"/.vim              > "/dev/null" 2>&1
+    rm -rf "${HOME:?}"/.vimundo          > "/dev/null" 2>&1
+    rm -rf "${HOME:?}"/.vimundo-session  > "/dev/null" 2>&1
   }
 
 ################################################################################
@@ -196,6 +195,7 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
 GHRWURL='https://raw.githubusercontent.com'
 PDST='autoload'
 PVIM='plug.vim'
+NVS='/nvim/site/'
 PLUGURL="${GHRWURL:?}/junegunn/vim-plug/master/${PVIM:?}"
 
 # Ensure Vim info directory exists
@@ -211,24 +211,29 @@ $(command -v go) "version" < "/dev/null" 2> "/dev/null" |
 
 # Clean-up
 test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
-  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}"/"${PVIM:?}"
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}"
 test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
   "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
 
 # Install vim-plug for NeoVim
-mkdir -p                                                           \
-  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}" \
-  > "/dev/null" 2>&1
-${CURL:?} -fsSLo                                                             \
-  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PDST:?}/"${PVIM:?}" \
-  "${PLUGURL:?}"
+mkdir -p                                                      \
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}" \
+    > "/dev/null" 2>&1
+test -f \
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}" ||
+    ${CURL:?} -fsSLo                                                        \
+      "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}" \
+      "${PLUGURL:?}"
 
 # Install vim-plug for Vim
-mkdir -p "${HOME:?}"/.vim/"${PDST:?}" \
-  > "/dev/null" 2>&1
-${CURL:?} -fsSLo                           \
-  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
-  "${PLUGURL:?}"
+mkdir -p                       \
+  "${HOME:?}"/.vim/"${PDST:?}" \
+    > "/dev/null" 2>&1
+test -f \
+  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" ||
+    ${CURL:?} -fsSLo                           \
+      "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
+      "${PLUGURL:?}"
 
 # Symlink vimrc to init.vim for this run
 ln -fs "${HOME:?}"/.config/nvim/init.vim "${HOME:?}"/.vimrc
@@ -252,37 +257,47 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${NVIM:?}                           \
-              '+silent! let g:plug_timeout=360' \
-              '+silent! let g:plug_window=""'   \
-              '+silent! PlugUpgrade'            \
+            ${NVIM:?}                             \
+              '+silent! let g:plug_retries = 6'   \
+              '+silent! let g:plug_threads = 1'   \
+              '+silent! let g:plug_timeout = 360' \
+              '+silent! let g:plug_window  = ""'  \
+              '+silent! PlugUpgrade'              \
               '+qall' ||
-              true
+                true
           }
-        ${NVIM:?}                           \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugClean!'             \
+        ${NVIM:?}                             \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugClean!'               \
           '+qall' ||
-          true
-        ${NVIM:?}                           \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugInstall'            \
+            true
+        ${NVIM:?}                             \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugInstall'              \
           '+qall' ||
-          true
-        ${NVIM:?}                           \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugInstall'            \
+            true
+        ${NVIM:?}                             \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugInstall'              \
           '+qall' ||
-          true
-        ${NVIM:?}                           \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugUpdate'             \
+            true
+        ${NVIM:?}                             \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window = ""'   \
+          '+silent! PlugUpdate'               \
           '+qall' ||
-          true
+            true
       }
 
     # Setup Vim if installed
@@ -290,37 +305,47 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${VIM:?}                            \
-              '+silent! let g:plug_timeout=360' \
-              '+silent! let g:plug_window=""'   \
-              '+silent! PlugUpgrade'            \
+            ${VIM:?}                              \
+              '+silent! let g:plug_retries = 6'   \
+              '+silent! let g:plug_threads = 1'   \
+              '+silent! let g:plug_timeout = 360' \
+              '+silent! let g:plug_window  = ""'  \
+              '+silent! PlugUpgrade'              \
               '+qall' ||
-              true
+                true
           }
-        ${VIM:?}                            \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugClean!'             \
+        ${VIM:?}                              \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugClean!'               \
           '+qall' ||
-          true
-        ${VIM:?}                            \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugInstall'            \
+            true
+        ${VIM:?}                              \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugInstall'              \
           '+qall' ||
-          true
-        ${VIM:?}                            \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugInstall'            \
+            true
+        ${VIM:?}                              \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugInstall'              \
           '+qall' ||
-          true
-        ${VIM:?}                            \
-          '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""'   \
-          '+silent! PlugUpdate'             \
+            true
+        ${VIM:?}                              \
+          '+silent! let g:plug_retries = 6'   \
+          '+silent! let g:plug_threads = 1'   \
+          '+silent! let g:plug_timeout = 360' \
+          '+silent! let g:plug_window  = ""'  \
+          '+silent! PlugUpdate'               \
           '+qall' ||
-          true
+            true
       }
   }
 
@@ -329,15 +354,15 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
 
 # Remove $HOME/.README.md if it exists
 test -L "${HOME:?}"/.README.md 2> "/dev/null" &&
-  rm -f "${HOME:?}"/.README.md > "/dev/null" 2>&1
+  rm -f "${HOME:?}"/.README.md  > "/dev/null" 2>&1
 test -h "${HOME:?}"/.README.md 2> "/dev/null" &&
-  rm -f "${HOME:?}"/.README.md > "/dev/null" 2>&1
+  rm -f "${HOME:?}"/.README.md  > "/dev/null" 2>&1
 
 # Remove $HOME/.install.sh if it exists
 test -L "${HOME:?}"/.install.sh 2> "/dev/null" &&
-  rm -f "${HOME:?}"/.install.sh > "/dev/null" 2>&1
+  rm -f "${HOME:?}"/.install.sh  > "/dev/null" 2>&1
 test -h "${HOME:?}"/.install.sh 2> "/dev/null" &&
-  rm -f "${HOME:?}"/.install.sh > "/dev/null" 2>&1
+  rm -f "${HOME:?}"/.install.sh  > "/dev/null" 2>&1
 
 ################################################################################
 # Finish

@@ -178,17 +178,25 @@ $(command -v go) "version" < "/dev/null" 2> "/dev/null" |
     PATH="${HOME:?}"/go/bin:"${PATH:?}"
   }
 
+# Clean-up
+test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}"/"${PVIM:?}"
+test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
+  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
+
 # Install vim-plug for NeoVim
 mkdir -p \
-  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}"/"${PVIM:?}"
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}" \
+  > "/dev/null" 2>&1
 ${CURL:?} -fLo \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PDST:?}/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Install vim-plug for Vim
-mkdir -p "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
+mkdir -p "${HOME:?}"/.vim/"${PDST:?}" \
+  > "/dev/null" 2>&1
 ${CURL:?} -fLo \
-  "${HOME:?}"/.vim/${PDST:?}/"${PVIM:?}" \
+  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Symlink vimrc to init.vim for this run

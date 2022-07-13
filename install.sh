@@ -216,17 +216,17 @@ test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
   "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
 
 # Install vim-plug for NeoVim
-mkdir -p \
+mkdir -p                                                           \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}" \
   > "/dev/null" 2>&1
-${CURL:?} -fsSLo \
+${CURL:?} -fsSLo                                                             \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PDST:?}/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Install vim-plug for Vim
 mkdir -p "${HOME:?}"/.vim/"${PDST:?}" \
   > "/dev/null" 2>&1
-${CURL:?} -fsSLo \
+${CURL:?} -fsSLo                           \
   "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
   "${PLUGURL:?}"
 
@@ -252,35 +252,35 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${NVIM:?} \
+            ${NVIM:?}                           \
               '+silent! let g:plug_timeout=360' \
-              '+silent! let g:plug_window=""' \
-              '+silent! PlugUpgrade' \
+              '+silent! let g:plug_window=""'   \
+              '+silent! PlugUpgrade'            \
               '+qall' ||
               true
           }
-        ${NVIM:?} \
+        ${NVIM:?}                           \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugClean!' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugClean!'             \
           '+qall' ||
           true
-        ${NVIM:?} \
+        ${NVIM:?}                           \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugInstall' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugInstall'            \
           '+qall' ||
           true
-        ${NVIM:?} \
+        ${NVIM:?}                           \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugInstall' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugInstall'            \
           '+qall' ||
           true
-        ${NVIM:?} \
+        ${NVIM:?}                           \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugUpdate' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugUpdate'             \
           '+qall' ||
           true
       }
@@ -290,35 +290,35 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${VIM:?} \
+            ${VIM:?}                            \
               '+silent! let g:plug_timeout=360' \
-              '+silent! let g:plug_window=""' \
-              '+silent! PlugUpgrade' \
+              '+silent! let g:plug_window=""'   \
+              '+silent! PlugUpgrade'            \
               '+qall' ||
               true
           }
-        ${VIM:?} \
+        ${VIM:?}                            \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugClean!' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugClean!'             \
           '+qall' ||
           true
-        ${VIM:?} \
+        ${VIM:?}                            \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugInstall' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugInstall'            \
           '+qall' ||
           true
-        ${VIM:?} \
+        ${VIM:?}                            \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugInstall' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugInstall'            \
           '+qall' ||
           true
-        ${VIM:?} \
+        ${VIM:?}                            \
           '+silent! let g:plug_timeout=360' \
-          '+silent! let g:plug_window=""' \
-          '+silent! PlugUpdate' \
+          '+silent! let g:plug_window=""'   \
+          '+silent! PlugUpdate'             \
           '+qall' ||
           true
       }

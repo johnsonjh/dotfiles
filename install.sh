@@ -188,14 +188,14 @@ test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
 mkdir -p \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}" \
   > "/dev/null" 2>&1
-${CURL:?} -fLo \
+${CURL:?} -fsSLo \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PDST:?}/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Install vim-plug for Vim
 mkdir -p "${HOME:?}"/.vim/"${PDST:?}" \
   > "/dev/null" 2>&1
-${CURL:?} -fLo \
+${CURL:?} -fsSLo \
   "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
   "${PLUGURL:?}"
 

@@ -528,9 +528,28 @@ function! s:gitCommitList()
        \ }')
 endfunction
 
+try
+  let g:vimversion_pretty =
+    \  matchstr(execute('version'), '[^\n.]\?[Vv][Ii][Mm][^\n]*')
+catch
+  try
+    let g:vimversion_pretty =
+      \  "Vim-compatible editor (version ".v:versionlong.")"
+  catch
+    try
+      let g:vimversion_pretty =
+        \  "Vim-compatible editor (version ".v:version.")"
+    catch
+      let g:vimversion_pretty =
+        \  "Vim-compatible editor (unknown version)"
+    endtry
+  endtry
+endtry
+
 let g:startify_custom_header = split(system(
-  \   ("(exec 2> /dev/null;printf '[%s@%s] %s\\n'
-  \     \"$(whoami)\" \"$(hostname)\" \"$(uname -mrs)\")")
+  \   ("(exec 2> /dev/null;printf '[%s@%s] %s\\n%s\\n'
+  \    \"$( whoami )\" \"$( hostname )\" \"$( uname -mrs )\"
+  \     \"$( printf '%s\\n' '".vimversion_pretty."' )\")")
   \   ."| awk '{ $1=$1 };1' 2> /dev/null | grep -v '^$' 2> /dev/null"
   \   ."| awk '{ print \"   \"$0 }' 2> /dev/null"), '\n'
   \ )

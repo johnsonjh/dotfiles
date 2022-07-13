@@ -165,8 +165,9 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
 # Vim
 
 GHRWURL='https://raw.githubusercontent.com'
-PLUGDST='autoload/plug.vim'
-PLUGURL="${GHRWURL:?}/junegunn/vim-plug/master/plug.vim"
+PDST='autoload'
+PVIM='plug.vim'
+PLUGURL="${GHRWURL:?}/junegunn/vim-plug/master/${PVIM:?}"
 
 # Ensure Vim info directory exists
 mkdir -p "${HOME:?}"/.vim/files/info
@@ -180,15 +181,16 @@ $(command -v go) "version" < "/dev/null" 2> "/dev/null" |
   }
 
 # Install vim-plug for NeoVim
-mkdir -p "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PLUGDST:?}"
+mkdir -p \
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/"${PDST:?}"/"${PVIM:?}"
 ${CURL:?} -fLo \
-  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PLUGDST:?} \
+  "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PDST:?}/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Install vim-plug for Vim
-mkdir -p "${HOME:?}"/.vim/"${PLUGDST:?}"
+mkdir -p "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
 ${CURL:?} -fLo \
-  "${HOME:?}"/.vim/${PLUGDST:?} \
+  "${HOME:?}"/.vim/${PDST:?}/"${PVIM:?}" \
   "${PLUGURL:?}"
 
 # Symlink vimrc to init.vim for this run

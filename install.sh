@@ -252,11 +252,11 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${NVIM:?} 'silent! +PlugUpgrade' '+qall' || true
+            ${NVIM:?} '+PlugUpgrade' '+qall' || true
           }
-        ${NVIM:?} 'silent! +PlugClean!' '+qall' || true
-        ${NVIM:?} 'silent! +PlugInstall' '+qall' || true
-        ${NVIM:?} 'silent! +PlugUpdate' '+qall' || true
+        ${NVIM:?} '+PlugClean!' '+qall' || true
+        ${NVIM:?} '+PlugInstall' '+qall' || true
+        ${NVIM:?} '+PlugUpdate' '+qall' || true
       }
 
     # Setup Vim if installed
@@ -264,11 +264,11 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${VIM:?} 'silent! +PlugUpgrade' '+qall' || true
+            ${VIM:?} '+PlugUpgrade' '+qall' || true
           }
-        ${VIM:?} 'silent! +PlugClean!' '+qall'
-        ${VIM:?} 'silent! +PlugInstall' '+qall'
-        ${VIM:?} 'silent! +PlugUpdate' '+qall'
+        ${VIM:?} '+PlugClean!' '+qall'
+        ${VIM:?} '+PlugInstall' '+qall'
+        ${VIM:?} '+PlugUpdate' '+qall'
       }
   }
 

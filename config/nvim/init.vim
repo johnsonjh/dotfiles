@@ -260,7 +260,7 @@ let g:rainbow_conf = {
 
 let g:rehash256 = 1
 
-let g:shfmt_extra_args  = '-s -i 2 -bn -ci -sr -fn'
+let g:shfmt_extra_args  = '-s -i 2 -ci -sr -fn'
 let g:shfmt_fmt_on_save = 0
 
 let g:shellcheck_directive_highlight = 1

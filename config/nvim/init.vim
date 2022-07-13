@@ -674,13 +674,13 @@ endif
 if has('nvim')
   augroup Scrollbar_Initialization
     autocmd!
-    autocmd WinScrolled,VimResized,CursorMoved,QuitPre *
+    silent! autocmd WinScrolled,VimResized,CursorMoved,QuitPre *
           \  silent! lua require('scrollbar').show()
-    autocmd BufWinEnter,WinEnter,BufEnter,TabEnter,FocusGained *
+    silent! autocmd BufWinEnter,WinEnter,BufEnter,TabEnter,FocusGained *
           \  silent! lua require('scrollbar').show()
-    autocmd User StartifyReady
+    silent! autocmd User StartifyReady
           \  silent! lua require('scrollbar').show()
-    autocmd WinLeave,BufLeave,BufWinLeave,FocusLost *
+    silent! autocmd WinLeave,BufLeave,BufWinLeave,FocusLost *
           \  silent! lua require('scrollbar').clear()
   augroup end
 endif

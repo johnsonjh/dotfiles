@@ -145,7 +145,11 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   }
 
 # rcup
-test "${HASRUN:?}" -eq 0 2> "/dev/null" && ${RCUP:?} -v
+test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
+  {
+    printf '%s\n' "Running rcup -v ..."
+    ${RCUP:?} -v
+  }
 test "${HASRUN:?}" -eq 1 2> "/dev/null" && ${RCUP:?}
 
 # Reset NeoVim and Vim configuration

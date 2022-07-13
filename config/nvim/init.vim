@@ -11,19 +11,6 @@
 " without any warranty.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" 1. Install or symlink this file to ~/.config/nvim/init.vim and/or ~/.vimrc
-" 2. Install vim-plug:
-" PLDST='autoload/plug.vim'
-" PLGURL='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-" curl -fLo "${XDG_DATA_HOME:-${HOME:?}/.local/share}"/nvim/site/${PLDST:?} \
-"   --create-dirs "${PLGURL:?}"
-" curl -fLo "${HOME:?}"/.vim/${PLDST:?} --create-dirs "${PLGURL:?}"
-" 3. Install plug-ins for Vim and/or NeoVim:
-" { nvim '+PlugClean!' '+qall' ; nvim '+PlugInstall' '+qall' ; } ; \
-"   { vim '+PlugClean!' '+qall' ; vim '+PlugInstall' '+qall' ; }
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set nocp
 

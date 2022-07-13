@@ -441,7 +441,7 @@ call plug#begin()
 call plug#end()
 
 if !has('nvim')
-  runtime! plugin/neovim_defaults.vim
+  silent! runtime! plugin/neovim_defaults.vim
 endif
 
 call SourceIfExists('/usr/share/asymptote/asy.vim')

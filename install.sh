@@ -14,6 +14,15 @@
 ################################################################################
 
 ################################################################################
+# Shell should never be csh
+
+# shellcheck disable=SC2006,SC2046,SC2065,SC2116
+test _`echo asdf 2>/dev/null` != _asdf >/dev/null &&\
+  printf '%s\n' "Warning: make_ver.sh does not support csh as sh." &&\
+  exit 1
+
+
+################################################################################
 # Strict mode
 
 set -eu > "/dev/null" 2>&1

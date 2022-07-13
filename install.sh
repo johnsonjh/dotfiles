@@ -64,15 +64,30 @@ PATH="${HOME:?}"/.local/bin:"${HOME:?}"/bin:"${PATH:?}"
 # Deduplicate PATH
 PATH="$(
   printf '%s\n' "${PATH:?}" |
-    tr ':' '\n' |
-    awk '!x[$0]++;' |
+    tr ':' '\n' | awk '!x[$0]++;' |
     awk '{ system("test -d \""$0"\" && printf \"%s\" \""$0"\":"); }' |
-    sed 's/:$//' |
-    tr -s '/'
+    sed 's/:$//' | tr -s '/'
 )"
 
 ################################################################################
 # Prerequisites
+
+# ${HOME:?}/.dotfiles
+test -d "${HOME:?}"/.dotfiles ||
+  {
+    printf '%s\n' "ERROR: ${HOME:?}/.dotfiles missing."
+    exit 1
+  }
+
+# git
+test -z "${GIT:-}" &&
+  {
+    GIT="$(command -v "git" 2> "/dev/null")" ||
+      {
+        printf '%s\n' "ERROR: git not found."
+        exit 1
+      }
+  }
 
 # rcm
 test -z "${RCUP:-}" &&
@@ -117,13 +132,10 @@ test -z "${NVIM:-}${VIM:-}" &&
     exit 1
   }
 
-# Ensure we are on a TTY and stderr/stdout is not redirected
-ISATTY=0
-test -t 0 2> "/dev/null" && ISATTY=1
-
-test "${ISATTY:?}" -eq 1 2> "/dev/null" ||
+# Ensure we are on a terminal
+test -t 0 2> "/dev/null" ||
   {
-    printf '%s\n' "ERROR: TTY/PTY required."
+    printf '%s\n' "ERROR: Interactive terminal required."
     exit 1
   }
 
@@ -132,8 +144,18 @@ test "${ISATTY:?}" -eq 1 2> "/dev/null" ||
 
 DOTFILES_DIR="${HOME:?}"/.config/dotfiles
 
-# Have we run before?
-test -f "${DOTFILES_DIR:?}"/.hasrun && HASRUN=1 || HASRUN=0
+# Set HASRUN if "${DOTFILES_DIR:?}"/.hasrun exists
+HASRUN=0
+test -f "${DOTFILES_DIR:?}"/.hasrun &&
+  HASRUN=1
+
+# If !HASRUN, remove "${DOTFILES_DIR:?}"/.init.vim.last
+test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
+    rm -f "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null" 2>&1
+
+# Unset HASRUN if "${DOTFILES_DIR:?}"/.hasrun nonexistent
+test -f "${DOTFILES_DIR:?}"/.hasrun ||
+  HASRUN=0
 
 # Symlink $HOME/.rcrc
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
@@ -202,28 +224,43 @@ ${CURL:?} -fsSLo \
 # Symlink vimrc to init.vim for this run
 ln -fs "${HOME:?}"/.config/nvim/init.vim "${HOME:?}"/.vimrc
 
-# Setup NeoVim if installed
-test -z "${NVIM:-}" ||
+# Check if Vim configuration has changed
+VIMRC_CHANGED=1
+test -f "${DOTFILES_DIR:?}"/.init.vim.last &&
   {
-    test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
+    cmp -s "${DOTFILES_DIR:?}"/.init.vim.last \
+      "${HOME:?}"/.dotfiles/config/nvim/init.vim 2> "/dev/null" &&
       {
-        ${NVIM:?} '+PlugUpgrade' '+qall' || true
+        VIMRC_CHANGED=0
       }
-    ${NVIM:?} '+PlugClean!' '+qall' || true
-    ${NVIM:?} '+PlugInstall' '+qall' || true
-    ${NVIM:?} '+PlugUpdate' '+qall' || true
   }
 
-# Setup Vim if installed
-test -z "${VIM:-}" ||
+# If Vim configuration changed
+test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
   {
-    test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
+    # Setup NeoVim if installed
+    test -z "${NVIM:-}" ||
       {
-        ${VIM:?} '+PlugUpgrade' '+qall' || true
+        test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
+          {
+            ${NVIM:?} '+PlugUpgrade' '+qall' || true
+          }
+        ${NVIM:?} '+PlugClean!' '+qall' || true
+        ${NVIM:?} '+PlugInstall' '+qall' || true
+        ${NVIM:?} '+PlugUpdate' '+qall' || true
       }
-    ${VIM:?} '+PlugClean!' '+qall'
-    ${VIM:?} '+PlugInstall' '+qall'
-    ${VIM:?} '+PlugUpdate' '+qall'
+
+    # Setup Vim if installed
+    test -z "${VIM:-}" ||
+      {
+        test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
+          {
+            ${VIM:?} '+PlugUpgrade' '+qall' || true
+          }
+        ${VIM:?} '+PlugClean!' '+qall'
+        ${VIM:?} '+PlugInstall' '+qall'
+        ${VIM:?} '+PlugUpdate' '+qall'
+      }
   }
 
 ################################################################################
@@ -244,8 +281,10 @@ test -h "${HOME:?}"/.install.sh 2> "/dev/null" &&
 ################################################################################
 # Finish
 
-mkdir -p "${DOTFILES_DIR:?}"
+mkdir -p "${DOTFILES_DIR:?}" > "/dev/null"
 touch "${DOTFILES_DIR:?}"/.hasrun
+cp -f "${HOME:?}"/.dotfiles/config.nvim/init.vim \
+  "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null"
 ${RCUP:?}
 
 ################################################################################

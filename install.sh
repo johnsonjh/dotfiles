@@ -18,7 +18,7 @@
 
 # shellcheck disable=SC2006,SC2046,SC2065,SC2116
 test _`echo asdf 2>/dev/null` != _asdf >/dev/null &&\
-  printf '%s\n' "Warning: make_ver.sh does not support csh as sh." &&\
+  printf '%s\n' "ERROR: Installation not supported with csh as sh." &&\
   exit 1
 
 

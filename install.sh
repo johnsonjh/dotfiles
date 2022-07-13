@@ -119,20 +119,11 @@ test -z "${NVIM:-}${VIM:-}" &&
 
 # Ensure we are on a TTY and stderr/stdout is not redirected
 ISATTY=0
-test -t 0 2> "/dev/null" &&
-  {
-    test -t 1 2> "/dev/null" &&
-      {
-        test -t 2 2> "/dev/null" &&
-          {
-            ISATTY=1
-          }
-      }
-  }
+test -t 0 2> "/dev/null" && ISATTY=1
 
 test "${ISATTY:?}" -eq 1 2> "/dev/null" ||
   {
-    printf '%s\n' "ERROR: Non-redirected TTY is required."
+    printf '%s\n' "ERROR: TTY/PTY required."
     exit 1
   }
 

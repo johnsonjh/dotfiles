@@ -209,7 +209,9 @@ try
     if has('win64') || has('win32') || has('win16')
       let g:osenv = 'WINDOWS'
     else
-      let g:osenv = toupper(substitute(system('uname'), '\n', '', ''))
+      let g:osenv = toupper(substitute(system(
+        \   'uname 2> /dev/null'), '\n', '', '')
+        \ )
     endif
   endif
 catch

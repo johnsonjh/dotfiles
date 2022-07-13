@@ -19,7 +19,7 @@
 set -eu > "/dev/null" 2>&1
 
 # shellcheck disable=SC3040
-(set -o pipefail > "/dev/null" 2>&1) &&
+(env sh -c 'set -o pipefail' > "/dev/null" 2>&1) &&
   set -o pipefail > "/dev/null" 2>&1
 
 ################################################################################

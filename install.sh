@@ -176,7 +176,7 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   }
 
 # rcup
-${RCUP:?}
+"${RCUP:?}"
 
 # Reset NeoVim and Vim configuration
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
@@ -196,7 +196,7 @@ GHRWURL='https://raw.githubusercontent.com'
 PDST='autoload'
 PVIM='plug.vim'
 NVS='/nvim/site/'
-PLUGURL="${GHRWURL:?}/junegunn/vim-plug/master/${PVIM:?}"
+PLUGURL="${GHRWURL:?}"/junegunn/vim-plug/master/"${PVIM:?}"
 
 # Ensure Vim info directory exists
 mkdir -p "${HOME:?}"/.vim/files/info
@@ -213,7 +213,7 @@ $(command -v go) "version" < "/dev/null" 2> "/dev/null" |
 test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}"
 test "${HASRUN:?}" -eq 1 2> "/dev/null" || rm -rf \
-  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}"
+  "${HOME:?}/.vim/${PDST:?}/${PVIM:?}"
 
 # Install vim-plug for NeoVim
 mkdir -p                                                      \
@@ -221,18 +221,18 @@ mkdir -p                                                      \
     > "/dev/null" 2>&1
 test -f \
   "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}" ||
-    ${CURL:?} -fsSLo                                                        \
+    "${CURL:?}" -fsSLo                                                      \
       "${XDG_DATA_HOME:-${HOME:?}/.local/share}${NVS:?}${PDST:?}/${PVIM:?}" \
       "${PLUGURL:?}"
 
 # Install vim-plug for Vim
-mkdir -p                       \
-  "${HOME:?}"/.vim/"${PDST:?}" \
+mkdir -p                     \
+  "${HOME:?}/.vim/${PDST:?}" \
     > "/dev/null" 2>&1
 test -f \
-  "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" ||
-    ${CURL:?} -fsSLo                           \
-      "${HOME:?}"/.vim/"${PDST:?}"/"${PVIM:?}" \
+  "${HOME:?}/.vim/${PDST:?}/${PVIM:?}" ||
+    "${CURL:?}" -fsSLo                     \
+      "${HOME:?}/.vim/${PDST:?}/${PVIM:?}" \
       "${PLUGURL:?}"
 
 # Symlink vimrc to init.vim for this run
@@ -257,7 +257,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${NVIM:?}                             \
+            "${NVIM:?}"                           \
               '+silent! let g:plug_retries = 6'   \
               '+silent! let g:plug_threads = 1'   \
               '+silent! let g:plug_timeout = 360' \
@@ -266,7 +266,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
               '+qall' ||
                 true
           }
-        ${NVIM:?}                             \
+        "${NVIM:?}"                           \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -274,7 +274,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugClean!'               \
           '+qall' ||
             true
-        ${NVIM:?}                             \
+        "${NVIM:?}"                           \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -282,7 +282,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugInstall'              \
           '+qall' ||
             true
-        ${NVIM:?}                             \
+        "${NVIM:?}"                           \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -290,7 +290,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugInstall'              \
           '+qall' ||
             true
-        ${NVIM:?}                             \
+        "${NVIM:?}"                           \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -305,7 +305,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
       {
         test "${HASRUN:?}" -eq 1 2> "/dev/null" &&
           {
-            ${VIM:?}                              \
+            "${VIM:?}"                            \
               '+silent! let g:plug_retries = 6'   \
               '+silent! let g:plug_threads = 1'   \
               '+silent! let g:plug_timeout = 360' \
@@ -314,7 +314,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
               '+qall' ||
                 true
           }
-        ${VIM:?}                              \
+        "${VIM:?}"                            \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -322,7 +322,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugClean!'               \
           '+qall' ||
             true
-        ${VIM:?}                              \
+        "${VIM:?}"                            \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -330,7 +330,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugInstall'              \
           '+qall' ||
             true
-        ${VIM:?}                              \
+        "${VIM:?}"                            \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -338,7 +338,7 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! PlugInstall'              \
           '+qall' ||
             true
-        ${VIM:?}                              \
+        "${VIM:?}"                            \
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
@@ -371,6 +371,6 @@ mkdir -p "${DOTFILES_DIR:?}" > "/dev/null"
 touch "${DOTFILES_DIR:?}"/.hasrun
 cp -f "${HOME:?}"/.dotfiles/config/nvim/init.vim \
   "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null"
-${RCUP:?}
+"${RCUP:?}"
 
 ################################################################################

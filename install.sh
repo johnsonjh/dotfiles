@@ -40,17 +40,23 @@ OS="$(
 
 test "${OS:-}" = "CYGWIN" &&
   {
+    { command -v git ; } > "/dev/null" 2>&1 ||
+      {
+        printf '%s\n' "ERROR: \"git\" not found."
+        exit 1
+      }
+
     command -v git 2>&1 |
       head -n 1 | grep -q '^/cygdrive/.*git$' &&
       {
-        printf '%s\n' "ERROR: Unable to find Cygwin git."
+        printf '%s\n' "ERROR: Unable to find native Cygwin \"git\"."
         exit 1
       }
 
     "$(command -v git)" --version 2>&1 |
       head -n 1 | grep -q 'windows' &&
       {
-        printf '%s\n' "ERROR: Unable to find Cygwin git."
+        printf '%s\n' "ERROR: Unable to find compatible Cygwin \"git\"."
         exit 1
       }
 

@@ -239,7 +239,7 @@ PLUGURL="${GHRWURL:?}"/junegunn/vim-plug/master/"${PVIM:?}"
 mkdir -p "${HOME:?}"/.vim/files/info
 
 # Ensure $HOME/go/bin exists if Golang is available.
-$(command -v go) "version" < "/dev/null" 2> "/dev/null" |
+"$(command -v go)" version < "/dev/null" 2> "/dev/null" |
   grep -q 'go ' > "/dev/null" 2>&1 &&
   {
     mkdir -p "${HOME:?}"/go/bin

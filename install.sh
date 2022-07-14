@@ -32,6 +32,29 @@ set -eu > "/dev/null" 2>&1
   set -o pipefail > "/dev/null" 2>&1
 
 ################################################################################
+# Cygwin
+
+OS="$( { exec 2> "/dev/null"; uname -s | cut -d '_' -f1 | cut -d '-' -f1 |
+  cut -d ' ' -f1; } || true )"
+
+test "${OS:-}" = "CYGWIN" &&
+  {
+    command -v git 2>&1 | head -n 1 | grep -q '^/cygdrive/.*git$' &&
+      { printf '%s\n' "ERROR: Unable to find Cygwin git."; exit 1; }
+    "$(command -v git)" --version 2>&1 | head -n 1 | grep -q 'windows' &&
+      { printf '%s\n' "ERROR: Unable to find Cygwin git."; exit 1; }
+    "$(command -v git)" config --global "core.autocrlf" "false" ||
+      { printf '%s\n' "ERROR: Unable to disable core.autocrlf."; exit 1; }
+    "$(command -v git)" config --global "core.filemode" "true" ||
+      { printf '%s\n' "ERROR: Unable to enable core.symlinks."; exit 1; }
+    "$(command -v git)" config --global "core.filemode" "false" ||
+      { printf '%s\n' "ERROR: Unable to disable core.filemode."; exit 1; }
+    # shellcheck disable=SC2155
+    export CYGWIN="winsymlinks:native $(printf '%s\n' "${CYGWIN:-}" |
+      sed -e 's/winsymlinks:[A-z]\+$//' -e 's/winsymlinks:[A-z]\+ //')"
+  }
+
+################################################################################
 # Configuration
 
 # Default PATH
@@ -146,6 +169,22 @@ test -t 0 2> "/dev/null" ||
   {
     printf '%s\n' "ERROR: Interactive terminal required."
     exit 1
+  }
+
+
+################################################################################
+# Download or update
+
+test -d "${HOME:?}"/.dotfiles &&
+  {
+    ( cd "${HOME:?}"/.dotfiles && { "${GIT:?}" pull || true; } )
+  }
+
+test -d "${HOME:?}"/.dotfiles ||
+  {
+    ( cd "${HOME:?}" && { rm -rf "./.dotfiles" > "/dev/null" 2>&1 || true; } )
+    "${GIT:?}" clone "https://github.com/johnsonjh/dotfiles" \
+      "${HOME:?}"/.dotfiles
   }
 
 ################################################################################

@@ -36,11 +36,12 @@ but peace!
 
 These dotfiles are regularly used on:
 
-* AIX 7.2+
+* AIX 7.2, 7.3
+* Cygwin 3.3.5
 * Darwin 21.2 (macOS 12.1)
 * FreeBSD 13.1
 * GNU/Linux
 * NetBSD 9.2
-* OpenBSD 7.1
-* OpenIndiana
+* OpenBSD 7.0, 7.1
+* OpenIndiana 2021.10+
 * Solaris 11.4

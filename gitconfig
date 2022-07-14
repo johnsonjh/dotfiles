@@ -48,6 +48,7 @@
 	notesRef          = true
 	symlinks          = true
 	autocrlf          = false
+	filemode          = false
 [delta]
 	navigate          = true
 	line-numbers      = true

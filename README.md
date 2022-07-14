@@ -32,6 +32,12 @@ We are the saviors of my life.
 So be it, until victory is ours and there is no enemy,
 but peace!
 
+## Installation
+
+```sh
+sh -c "$(curl -fsSL 'https://github.com/johnsonjh/dotfiles/raw/master/install.sh')"
+```
+
 ## Platforms
 
 These dotfiles are regularly used on:

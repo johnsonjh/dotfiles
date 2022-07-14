@@ -63,9 +63,6 @@
 [format]
 	from              = true
 	coverletter       = false
-[pull]
-	ff                = false
-	rebase            = true
 [receive]
 	updateServerInfo  = true
 	keepAlive         = 1

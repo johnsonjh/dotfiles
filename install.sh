@@ -121,10 +121,8 @@ PATH="$(
   {
     printf '%s\n' "${PATH:?}" |
       tr ':' '\n' |
-      awk '!x[$0]++;' | awk
-       '{
-          system("test -d \""$0"\" && printf \"%s\" \""$0"\":");
-        }' |
+      awk '!x[$0]++;' |
+      awk '{ system("test -d \""$0"\" && printf \"%s\" \""$0"\":"); }' |
       sed 's/:$//' |
       tr -s '/'
   }

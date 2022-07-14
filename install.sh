@@ -40,7 +40,7 @@ test "${OS:-}" = "CYGWIN" &&
       { printf '%s\n' "ERROR: Unable to find Cygwin git."; exit 1; }
     "$(command -v git)" config --global "core.autocrlf" "false" ||
       { printf '%s\n' "ERROR: Unable to disable core.autocrlf."; exit 1; }
-    "$(command -v git)" config --global "core.filemode" "true" ||
+    "$(command -v git)" config --global "core.symlinks" "true" ||
       { printf '%s\n' "ERROR: Unable to enable core.symlinks."; exit 1; }
     "$(command -v git)" config --global "core.filemode" "false" ||
       { printf '%s\n' "ERROR: Unable to disable core.filemode."; exit 1; }

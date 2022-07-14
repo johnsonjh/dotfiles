@@ -27,10 +27,6 @@ test _`echo asdf 2>/dev/null` != _asdf >/dev/null &&\
 
 set -eu > "/dev/null" 2>&1
 
-# shellcheck disable=SC3040
-(env sh -c 'set -o pipefail' > "/dev/null" 2>&1) &&
-  set -o pipefail > "/dev/null" 2>&1
-
 ################################################################################
 # Cygwin
 

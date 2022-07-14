@@ -374,8 +374,12 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
           '+silent! let g:plug_retries = 6'   \
           '+silent! let g:plug_threads = 1'   \
           '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window = ""'   \
+          '+silent! let g:plug_window  = ""'  \
           '+silent! PlugUpdate'               \
+          '+qall' || true
+
+        "${NVIM:?}"                      \
+          '+silent! UpdateRemotePlugins' \
           '+qall' || true
       }
 

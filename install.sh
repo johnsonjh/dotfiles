@@ -29,21 +29,50 @@ set -eu > "/dev/null" 2>&1
 ################################################################################
 # Cygwin
 
-OS="$( { exec 2> "/dev/null"; uname -s | cut -d '_' -f1 | cut -d '-' -f1 |
-  cut -d ' ' -f1; } || true )"
+OS="$( {
+  exec 2> "/dev/null"
+  uname -s |
+    cut -d '_' -f1 |
+    cut -d '-' -f1 |
+    cut -d ' ' -f1
+  } || true )"
 
 test "${OS:-}" = "CYGWIN" &&
   {
-    command -v git 2>&1 | head -n 1 | grep -q '^/cygdrive/.*git$' &&
-      { printf '%s\n' "ERROR: Unable to find Cygwin git."; exit 1; }
-    "$(command -v git)" --version 2>&1 | head -n 1 | grep -q 'windows' &&
-      { printf '%s\n' "ERROR: Unable to find Cygwin git."; exit 1; }
+    command -v git 2>&1 |
+      head -n 1 |
+      grep -q '^/cygdrive/.*git$' &&
+      {
+        printf '%s\n' "ERROR: Unable to find Cygwin git."
+        exit 1
+      }
+
+    "$(command -v git)" --version 2>&1 |
+      head -n 1 |
+      grep -q 'windows' &&
+      {
+        printf '%s\n' "ERROR: Unable to find Cygwin git."
+        exit 1
+      }
+
     "$(command -v git)" config --global "core.autocrlf" "false" ||
-      { printf '%s\n' "ERROR: Unable to disable core.autocrlf."; exit 1; }
+      {
+        printf '%s\n' "ERROR: Unable to disable core.autocrlf."
+        exit 1
+      }
+
     "$(command -v git)" config --global "core.symlinks" "true" ||
-      { printf '%s\n' "ERROR: Unable to enable core.symlinks."; exit 1; }
+      {
+        printf '%s\n' "ERROR: Unable to enable core.symlinks."
+        exit 1
+      }
+
     "$(command -v git)" config --global "core.filemode" "false" ||
-      { printf '%s\n' "ERROR: Unable to disable core.filemode."; exit 1; }
+      {
+        printf '%s\n' "ERROR: Unable to disable core.filemode."
+        exit 1
+      }
+
     # shellcheck disable=SC2155
     export CYGWIN="winsymlinks:native $(printf '%s\n' "${CYGWIN:-}" |
       sed -e 's/winsymlinks:[A-z]\+$//' -e 's/winsymlinks:[A-z]\+ //')"
@@ -104,7 +133,7 @@ test -z "${GIT:-}" &&
   {
     GIT="$(command -v "git" 2> "/dev/null")" ||
       {
-        printf '%s\n' "ERROR: git not found."
+        printf '%s\n' "ERROR: \"git\" not found."
         exit 1
       }
   }
@@ -114,7 +143,7 @@ test -z "${RCUP:-}" &&
   {
     RCUP="$(command -v "rcup" 2> "/dev/null")" ||
       {
-        printf '%s\n' "ERROR: rcup not found."
+        printf '%s\n' "ERROR: \"rcup\" not found."
         exit 1
       }
   }
@@ -124,7 +153,7 @@ test -z "${CURL:-}" &&
   {
     CURL="$(command -v "curl" 2> "/dev/null")" ||
       {
-        printf '%s\n' "ERROR: curl not found."
+        printf '%s\n' "ERROR: \"curl\" not found."
         exit 1
       }
   }
@@ -148,7 +177,7 @@ test -z "${VIM:-}" &&
 # Require NeoVim or Vim
 test -z "${NVIM:-}${VIM:-}" &&
   {
-    printf '%s\n' "ERROR: vim or nvim not found."
+    printf '%s\n' "ERROR: \"vim\" and/or \"nvim\" is required."
     exit 1
   }
 
@@ -164,13 +193,27 @@ test -t 0 2> "/dev/null" ||
 
 test -d "${HOME:?}"/.dotfiles &&
   {
-    ( cd "${HOME:?}"/.dotfiles && { { "${GIT:?}" pull || true; } |
-      { grep -v '^Already up to date.' || true; } } )
+    (
+      cd "${HOME:?}"/.dotfiles &&
+        {
+          {
+            "${GIT:?}" pull || true
+          } |
+          {
+            grep -v '^Already up to date.' || true
+          }
+        }
+    )
   }
 
 test -d "${HOME:?}"/.dotfiles ||
   {
-    ( cd "${HOME:?}" && { rm -rf "./.dotfiles" > "/dev/null" 2>&1 || true; } )
+    (
+      cd "${HOME:?}" &&
+        {
+          rm -rf "./.dotfiles" > "/dev/null" 2>&1 || true
+        }
+    )
     "${GIT:?}" clone "https://github.com/johnsonjh/dotfiles" \
       "${HOME:?}"/.dotfiles
   }

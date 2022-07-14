@@ -1,0 +1,52 @@
+#!/usr/bin/env sh
+# vim: set ft=sh ts=2 sw=2 tw=80 expandtab colorcolumn=80 :
+# SPDX-License-Identifier: FSFAP
+
+################################################################################
+#
+# Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+#
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided the copyright
+# notice and this notice are preserved. This file is offered "AS-IS",
+# without any warranty.
+#
+################################################################################
+
+# Enable strict ...
+unset NVIM BVIM VIM > "/dev/null" 2>&1
+set -eu > "/dev/null" 2>&1
+
+# Find NeoVim ...
+NVIM="$(exec 2> "/dev/null";
+        command -v "nvim")" || true
+
+# Find Vim ...
+BVIM="$(exec 2> "/dev/null";
+        command -v "vim9"  ||
+        command -v "vim8"  ||
+        command -v "vim")" || true
+
+# Error if neither found ...
+test -z "${NVIM:-}${BVIM:-}" &&
+  {
+    printf '%s\n' \
+      "ERROR: Neither \"nvim\" nor \"vim\" found in PATH." >&2
+    exit 1
+  }
+
+# Use NeoVim ...
+test -z "${BVIM:-}" &&  \
+    VIM="${NVIM:?}" ||  \
+    VIM="${BVIM:?}"
+
+# Use Vim ...
+test -z "${NVIM:-}" &&  \
+    VIM="${BVIM:?}" ||  \
+    VIM="${NVIM:?}"
+
+# Disable strict ...
+set +eu > "/dev/null" 2>&1
+
+# Execute ...
+exec "${VIM:?}" "${@}"

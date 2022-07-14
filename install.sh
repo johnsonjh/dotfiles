@@ -244,6 +244,21 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
 test -f "${DOTFILES_DIR:?}"/.init.vim.last ||
   HASRUN=0
 
+# Unset DOTFILES_FORCE_RESET is set to zero
+test "${DOTFILES_FORCE_RESET:-}" -eq 0 > "/dev/null" 2>&1 &&
+  {
+    unset DOTFILES_FORCE_RESET > "/dev/null" 2>&1 || true
+  }
+
+# Unset HASRUN and tidy when "${DOTFILES_FORCE_RESET:-}" is set
+test -n "${DOTFILES_FORCE_RESET:-}" > "/dev/null" 2>&1 &&
+  {
+    HASRUN=0
+    DOTFILES_FORCE_RESET=1
+    rm -f "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null" 2>&1 || true
+    rm -f "${DOTFILES_DIR:?}"/.hasrun > "/dev/null" 2>&1 || true
+  }
+
 # Symlink $HOME/.rcrc
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   {
@@ -344,42 +359,46 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
               '+silent! let g:plug_window  = ""'  \
               '+silent! PlugUpgrade'              \
               '+qall' || true
+
+            "${NVIM:?}"                           \
+              '+silent! UpdateRemotePlugins'      \
+              '+qall' || true
           }
 
-        "${NVIM:?}"                           \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugClean!'               \
+        "${NVIM:?}"                               \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugClean!'                   \
           '+qall' || true
 
-        "${NVIM:?}"                           \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugInstall'              \
+        "${NVIM:?}"                               \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugInstall'                  \
           '+qall' || true
 
-        "${NVIM:?}"                           \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugInstall'              \
+        "${NVIM:?}"                               \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugInstall'                  \
           '+qall' || true
 
-        "${NVIM:?}"                           \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugUpdate'               \
+        "${NVIM:?}"                               \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugUpdate'                   \
           '+qall' || true
 
-        "${NVIM:?}"                      \
-          '+silent! UpdateRemotePlugins' \
+        "${NVIM:?}"                               \
+          '+silent! UpdateRemotePlugins'          \
           '+qall' || true
       }
 
@@ -397,36 +416,36 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
               '+qall' || true
           }
 
-        "${VIM:?}"                            \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugClean!'               \
+        "${VIM:?}"                                \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugClean!'                   \
           '+qall' || true
 
-        "${VIM:?}"                            \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugInstall'              \
+        "${VIM:?}"                                \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugInstall'                  \
           '+qall' || true
 
-        "${VIM:?}"                            \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugInstall'              \
+        "${VIM:?}"                                \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugInstall'                  \
           '+qall' || true
 
-        "${VIM:?}"                            \
-          '+silent! let g:plug_retries = 6'   \
-          '+silent! let g:plug_threads = 1'   \
-          '+silent! let g:plug_timeout = 360' \
-          '+silent! let g:plug_window  = ""'  \
-          '+silent! PlugUpdate'               \
+        "${VIM:?}"                                \
+          '+silent! let g:plug_retries = 6'       \
+          '+silent! let g:plug_threads = 1'       \
+          '+silent! let g:plug_timeout = 360'     \
+          '+silent! let g:plug_window  = ""'      \
+          '+silent! PlugUpdate'                   \
           '+qall' || true
       }
   }

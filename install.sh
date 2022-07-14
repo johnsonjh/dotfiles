@@ -234,8 +234,8 @@ test -f "${DOTFILES_DIR:?}"/.hasrun &&
 test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
   rm -f "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null" 2>&1
 
-# Unset HASRUN if "${DOTFILES_DIR:?}"/.hasrun nonexistent
-test -f "${DOTFILES_DIR:?}"/.hasrun ||
+# Unset HASRUN if "${DOTFILES_DIR:?}"/.init.vim.last nonexistent
+test -f "${DOTFILES_DIR:?}"/.init.vim.last ||
   HASRUN=0
 
 # Symlink $HOME/.rcrc

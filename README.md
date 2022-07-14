@@ -1,3 +1,11 @@
+<!-- vim: set ft=markdown ts=2 sw=2 tw=80 cc=80 et spell nolist wrap lbr :-->
+<!-- vim: set ruler hlsearch incsearch autoindent wildmenu wrapscan :-->
+<!-- SPDX-License-Identifier: FSFAP -->
+<!-- Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+     Copying and distribution of this file, with or without modification,
+     are permitted in any medium without royalty provided the copyright
+     notice and this notice are preserved.  This file is offered "AS-IS",
+     without any warranty. -->
 # dotfiles
 
 ## Overview

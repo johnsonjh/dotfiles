@@ -1,9 +1,22 @@
-set quiet
-set tcp nodelay on
-set tcp reverse-dns-lookup off
-set flow-control /tcpip xon/xoff
-set flow xon/xoff
-set key \127 \8
-set telnet environment uservar TERM vt102
-set terminal bytesize 8
-set prompt >>
+# SPDX-License-Identifier: FSFAP
+
+############################################################################
+#
+# Copyright (c) 2022 Jeffrey H. Johnson <trnsz@pobox.com>
+#
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided the copyright
+# notice and this notice are preserved.  This file is offered "AS-IS",
+# without any warranty.
+#
+############################################################################
+
+SET QUIET
+SET TCP NODELAY ON
+SET TCP REVERSE-DNS-LOOKUP OFF
+SET FLOW-CONTROL /TCPIP XON/XOFF
+SET FLOW XON/XOFF
+SET KEY \127 \8
+SET TELNET ENVIRONMENT USERVAR TERM vt102
+SET TERMINAL BYTESIZE 8
+SET PROMPT >>

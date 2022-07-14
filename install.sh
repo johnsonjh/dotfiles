@@ -200,7 +200,7 @@ test -d "${HOME:?}"/.dotfiles &&
             "${GIT:?}" pull || true
           } |
           {
-            grep -v '^Already up to date.' || true
+            grep -v '^.* up to date.$' || true
           }
         }
     )

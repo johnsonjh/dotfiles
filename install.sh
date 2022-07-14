@@ -21,7 +21,6 @@ test _`echo asdf 2>/dev/null` != _asdf >/dev/null &&\
   printf '%s\n' "ERROR: Installation not supported with csh as sh." &&\
   exit 1
 
-
 ################################################################################
 # Strict mode
 
@@ -160,13 +159,13 @@ test -t 0 2> "/dev/null" ||
     exit 1
   }
 
-
 ################################################################################
 # Download or update
 
 test -d "${HOME:?}"/.dotfiles &&
   {
-    ( cd "${HOME:?}"/.dotfiles && { "${GIT:?}" pull || true; } )
+    ( cd "${HOME:?}"/.dotfiles && { { "${GIT:?}" pull || true; } |
+      { grep -v '^Already up to date.' || true; } } )
   }
 
 test -d "${HOME:?}"/.dotfiles ||

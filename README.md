@@ -42,17 +42,11 @@ but peace!
 
 ## Installation
 
-1. Install minimum prerequisites:
-   * [`curl`](https://curl.se/)
-   * [`git`](https://git-scm.com/)
-   * [`rcm`](https://github.com/thoughtbot/rcm)
-     * [`nvim`](https://neovim.io/) *and*/*or*
-       [`vim`](https://www.vim.org/)
-2. If using NeoVim, verify configuration with `:checkhealth`
-3. Execute the installation script:
-   ```sh
-   sh -c "$(curl -fsSL 'https://github.com/johnsonjh/dotfiles/raw/master/install.sh')"
-   ```
+1. Install prerequisites: [`curl`](https://curl.se/),
+   [`git`](https://git-scm.com/), [`rcm`](https://github.com/thoughtbot/rcm),
+   [`nvim`](https://neovim.io/) and/or [`vim`](https://www.vim.org/)
+2. Verify NeoVim configuration (*i.e.* `nvim '+checkhealth'`)
+3. `sh -c "$(curl -fsSL 'https://github.com/johnsonjh/dotfiles/raw/master/install.sh')"`
 
 ## Platforms
 

@@ -488,6 +488,6 @@ mkdir -p "${DOTFILES_DIR:?}" > "/dev/null"
 touch "${DOTFILES_DIR:?}"/.hasrun
 cp -f "${HOME:?}"/.dotfiles/config/nvim/init.vim \
   "${DOTFILES_DIR:?}"/.init.vim.last > "/dev/null"
-"${RCUP:?}"
+"${RCUP:?}" || true
 
 ################################################################################

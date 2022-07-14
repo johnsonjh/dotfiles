@@ -39,7 +39,7 @@ These dotfiles are regularly used on:
 * AIX 7.2+
 * Darwin 21.2 (macOS 12.1)
 * FreeBSD 13.1
-* Linux
+* GNU/Linux
 * NetBSD 9.2
 * OpenBSD 7.1
 * OpenIndiana

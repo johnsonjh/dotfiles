@@ -104,13 +104,6 @@ PATH="$(
 ################################################################################
 # Prerequisites
 
-# ${HOME:?}/.dotfiles
-test -d "${HOME:?}"/.dotfiles ||
-  {
-    printf '%s\n' "ERROR: ${HOME:?}/.dotfiles missing."
-    exit 1
-  }
-
 # git
 test -z "${GIT:-}" &&
   {
@@ -185,6 +178,15 @@ test -d "${HOME:?}"/.dotfiles ||
     ( cd "${HOME:?}" && { rm -rf "./.dotfiles" > "/dev/null" 2>&1 || true; } )
     "${GIT:?}" clone "https://github.com/johnsonjh/dotfiles" \
       "${HOME:?}"/.dotfiles
+  }
+
+################################################################################
+# Sanity check
+
+test -d "${HOME:?}"/.dotfiles ||
+  {
+    printf '%s\n' "ERROR: ${HOME:?}/.dotfiles missing."
+    exit 1
   }
 
 ################################################################################

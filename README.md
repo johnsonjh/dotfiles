@@ -37,7 +37,7 @@ Before God, I swear this creed.  My dotfiles and I are the
 defenders of my world.  We are the masters of our enemy.
 We are the saviors of my life.
 
-So be it, until victory is ours and there is no more chaos,
+So be it, until victory is ours and there is no chaos,
 but perfection!
 
 ## Installation

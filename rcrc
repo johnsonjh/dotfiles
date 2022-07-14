@@ -12,4 +12,4 @@
 #
 ###############################################################################
 
-EXCLUDES="README.md install.sh"
+EXCLUDES="README.md install.sh LICENSES/FSFAP.txt"

@@ -424,17 +424,26 @@ test "${VIMRC_CHANGED:?}" -eq 1 2> "/dev/null" &&
 ################################################################################
 # Clean-up
 
-# Remove $HOME/.README.md if it exists
-test -L "${HOME:?}"/.README.md > "/dev/null" 2>&1 &&
-  rm -f "${HOME:?}"/.README.md > "/dev/null" 2>&1
-test -h "${HOME:?}"/.README.md > "/dev/null" 2>&1 &&
-  rm -f "${HOME:?}"/.README.md > "/dev/null" 2>&1
+# Remove ${HOME}/.README.md if it exists
+test -L "${HOME:?}"/.README.md          > "/dev/null" 2>&1 &&
+  rm -f "${HOME:?}"/.README.md          > "/dev/null" 2>&1
+test -h "${HOME:?}"/.README.md          > "/dev/null" 2>&1 &&
+  rm -f "${HOME:?}"/.README.md          > "/dev/null" 2>&1
 
-# Remove $HOME/.install.sh if it exists
-test -L "${HOME:?}"/.install.sh > "/dev/null" 2>&1 &&
-  rm -f "${HOME:?}"/.install.sh > "/dev/null" 2>&1
-test -h "${HOME:?}"/.install.sh > "/dev/null" 2>&2 &&
-  rm -f "${HOME:?}"/.install.sh > "/dev/null" 2>&1
+# Remove ${HOME}/.LICENSES/FSFAP.txt if it exists
+test -L "${HOME:?}"/.LICENSES/FSFAP.txt > "/dev/null" 2>&1 &&
+  rm -f "${HOME:?}"/.LICENSES/FSFAP.txt > "/dev/null" 2>&1
+test -h "${HOME:?}"/.LICENSES/FSFAP.txt > "/dev/null" 2>&2 &&
+  rm -f "${HOME:?}"/.LICENSES/FSFAP.txt > "/dev/null" 2>&1
+
+# Remove ${HOME}/.LICENSES if empty
+rmdir   "${HOME:?}"/.LICENSES           > "/dev/null" 2>&1 || true
+
+# Remove ${HOME}/.install.sh if it exists
+test -L "${HOME:?}"/.install.sh         > "/dev/null" 2>&1 &&
+  rm -f "${HOME:?}"/.install.sh         > "/dev/null" 2>&1
+test -h "${HOME:?}"/.install.sh         > "/dev/null" 2>&2 &&
+  rm -f "${HOME:?}"/.install.sh         > "/dev/null" 2>&1
 
 ################################################################################
 # Finish

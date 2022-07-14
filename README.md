@@ -44,9 +44,9 @@ but perfection!
 
 1. Install prerequisites: [`curl`](https://curl.se/),
    [`git`](https://git-scm.com/), [`rcm`](https://github.com/thoughtbot/rcm),
-   [`nvim`](https://neovim.io/) and/or [`vim`](https://www.vim.org/).
-2. If using NeoVim, verify configuration (*i.e.* `nvim '+checkhealth'`).
-3. `sh -c "$(curl -fsSL 'https://github.com/johnsonjh/dotfiles/raw/master/install.sh')"`
+   [`nvim`](https://neovim.io/) and/or [`vim`](https://www.vim.org/)
+2. If using NeoVim, verify configuration: `nvim '+checkhealth'`
+3. Run `sh -c "$(curl -fsSL 'https://github.com/johnsonjh/dotfiles/raw/master/install.sh')"`
 
 ## Platforms
 

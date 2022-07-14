@@ -244,7 +244,14 @@ test "${HASRUN:?}" -eq 0 2> "/dev/null" &&
 test -f "${DOTFILES_DIR:?}"/.init.vim.last ||
   HASRUN=0
 
-# Unset DOTFILES_FORCE_RESET is set to zero
+# Allow command-line arguments `-f` or `--force` to set DOTFILES_FORCE_RESET
+while test "${1:-}" > "/dev/null" 2>&1; do
+  test "${1:-}" = '-f' > "/dev/null" 2>&1 && DOTFILES_FORCE_RESET=1
+  test "${1:-}" = '--force' > "/dev/null" 2>&1 && DOTFILES_FORCE_RESET=1
+  shift 1 > "/dev/null" 2>&1 || true
+done
+
+# Unset DOTFILES_FORCE_RESET variable if set to zero
 test "${DOTFILES_FORCE_RESET:-}" -eq 0 > "/dev/null" 2>&1 &&
   {
     unset DOTFILES_FORCE_RESET > "/dev/null" 2>&1 || true

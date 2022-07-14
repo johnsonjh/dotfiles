@@ -12,6 +12,4 @@
 #
 ###############################################################################
 
-# Using rcm 1.3.5
-
 EXCLUDES="README.md install.sh LICENSES/FSFAP.txt"

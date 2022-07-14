@@ -47,6 +47,7 @@
 	editor            = nvim
 	notesRef          = true
 	symlinks          = true
+	autocrlf          = false
 [delta]
 	navigate          = true
 	line-numbers      = true

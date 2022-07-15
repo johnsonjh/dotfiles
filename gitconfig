@@ -74,6 +74,9 @@
 	recurse           = true
 [init]
 	defaultBranch     = master
+[pull]
+	ff                = true
+	rebase            = false
 [diff]
 	context           = 10
 	tool              = bc4

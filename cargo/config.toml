@@ -29,6 +29,3 @@ codegen-units = 1
 [profile.dev.package."*"]
 opt-level = 3
 codegen-units = 1
-
-[target.x86_64-unknown-linux-musl]
-rustflags = ["-C", "target-feature=+crt-static"]

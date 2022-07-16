@@ -333,6 +333,7 @@ call plug#begin()
     Plug 'https://github.com/lambdalisue/pastefix.vim.git'
     Plug 'https://github.com/nvim-lua/plenary.nvim.git'
     Plug 'https://github.com/sindrets/diffview.nvim.git'
+    Plug 'https://github.com/vimlab/split-term.vim'
     Plug 'https://github.com/windwp/nvim-spectre.git'
     Plug 'https://github.com/Shougo/deoplete.nvim.git', {
        \   'do': ':UpdateRemotePlugins'
@@ -402,6 +403,7 @@ call plug#begin()
   Plug 'https://github.com/ntpeters/vim-better-whitespace.git'
   Plug 'https://github.com/preservim/nerdtree.git'
   Plug 'https://github.com/preservim/tagbar.git'
+  Plug 'https://github.com/preservim/vimux.git'
   Plug 'https://github.com/preservim/vim-markdown.git'
   Plug 'https://github.com/preservim/vim-textobj-quote'
   Plug 'https://github.com/rbgrouleff/bclose.vim.git'
@@ -451,6 +453,7 @@ call plug#begin()
   Plug 'https://tpope.io/vim/sensible.git'
   Plug 'https://tpope.io/vim/speeddating.git'
   Plug 'https://tpope.io/vim/surround.git'
+  Plug 'https://tpope.io/vim/tbone.git'
   Plug 'https://tpope.io/vim/unimpaired.git'
 call plug#end()
 

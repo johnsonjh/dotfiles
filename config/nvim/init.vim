@@ -349,6 +349,7 @@ call plug#begin()
   Plug 'https://github.com/brooth/far.vim.git'
   Plug 'https://github.com/chumakd/scratch.vim.git'
   Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+  Plug 'https://github.com/dbmrq/vim-ditto.git'
   Plug 'https://github.com/dense-analysis/ale.git'
   Plug 'https://github.com/direnv/direnv.vim.git'
   Plug 'https://github.com/drzel/vim-line-no-indicator.git'
@@ -683,6 +684,12 @@ if has('nvim')
   nnoremap <Leader>sp viw:lua
          \  require('spectre').open_file_search()<CR>
 endif
+
+augroup Ditto_Initialization
+  autocmd!
+  silent! autocmd FileType markdown,text,tex DittoOn
+  nmap <leader>di <Plug>ToggleDitto
+augroup end
 
 if has('nvim')
   augroup Scrollbar_Initialization

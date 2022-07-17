@@ -715,7 +715,10 @@ else
   augroup VimAfter
     autocmd!
     autocmd VimEnter * silent! unmap <Leader>bd
-    autocmd VimEnter * Alias w!! SudaWrite
+    autocmd VimEnter * silent! Alias w!! SudaWrite
+    if !has('nvim')
+      autocmd VimEnter * silent! Alias Term term
+    endif
     if has('nvim')
       autocmd FileType c call SourceIfExists(expand(
             \   '$HOME/.local/share/nvim/plugged/'

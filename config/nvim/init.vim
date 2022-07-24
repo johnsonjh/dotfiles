@@ -439,6 +439,7 @@ call plug#begin()
   Plug 'https://github.com/wellle/targets.vim.git'
   Plug 'https://github.com/wellle/tmux-complete.vim.git'
   Plug 'https://github.com/xarthurx/taskwarrior.vim.git'
+  Plug 'https://github.com/xu-cheng/brew.vim.git'
   Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
   Plug 'https://github.com/z0mbix/vim-shfmt.git', {
      \   'for': 'sh'

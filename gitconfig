@@ -83,3 +83,8 @@
 	maxRequestBuffer = 128M
 [feature]
 	experimental = true
+[gc]
+	autoDetach = false
+	pruneExpire = now
+[credential]
+	helper = cache --timeout 3600

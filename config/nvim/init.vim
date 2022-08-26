@@ -413,7 +413,9 @@ call plug#begin()
   Plug 'https://github.com/rickhowe/diffchar.vim.git'
   Plug 'https://github.com/shumphrey/fugitive-gitlab.vim.git'
   if (g:osenv != 'AIX')
-    Plug 'https://github.com/SirVer/ultisnips.git'
+    if has ('python3')
+      Plug 'https://github.com/SirVer/ultisnips.git'
+    endif
   endif
   Plug 'https://github.com/skywind3000/vim-preview.git'
   Plug 'https://github.com/sodapopcan/vim-twiggy.git'
@@ -423,7 +425,6 @@ call plug#begin()
   Plug 'https://github.com/tmux-plugins/vim-tmux.git'
   Plug 'https://github.com/tomasiser/vim-code-dark.git'
   Plug 'https://github.com/tomasr/molokai.git'
-  Plug 'https://github.com/vim-latex/vim-latex.git'
   Plug 'https://github.com/vim-pandoc/vim-pandoc-after.git'
   Plug 'https://github.com/vim-pandoc/vim-pandoc.git'
   Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'

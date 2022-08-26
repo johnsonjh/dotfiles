@@ -431,7 +431,6 @@ call plug#begin()
   Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax.git'
   Plug 'https://github.com/vim-scripts/autoload_cscope.vim.git'
   Plug 'https://github.com/vim-scripts/UniCycle.git'
-  Plug 'https://github.com/vimwiki/vimwiki.git'
   Plug 'https://github.com/voldikss/vim-mma.git'
   Plug 'https://github.com/wateret/ifdef-heaven.vim.git'
   Plug 'https://github.com/weilbith/nerdtree_choosewin-plugin.git'

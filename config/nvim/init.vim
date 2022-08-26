@@ -423,8 +423,6 @@ call plug#begin()
   Plug 'https://github.com/tmux-plugins/vim-tmux.git'
   Plug 'https://github.com/tomasiser/vim-code-dark.git'
   Plug 'https://github.com/tomasr/molokai.git'
-  Plug 'https://github.com/tweekmonster/haunted.vim.git'
-  Plug 'https://github.com/tweekmonster/local-indent.vim.git'
   Plug 'https://github.com/vim-latex/vim-latex.git'
   Plug 'https://github.com/vim-pandoc/vim-pandoc-after.git'
   Plug 'https://github.com/vim-pandoc/vim-pandoc.git'

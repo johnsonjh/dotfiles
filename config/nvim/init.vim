@@ -27,9 +27,13 @@ set autoread
 set belloff=all
 set browsedir=buffer
 set conceallevel=0
-set cscopeverbose
-set cscopetag
-set csto=0
+
+if !has('nvim')
+  set cscopeverbose
+  set cscopetag
+  set csto=0
+endif
+
 set foldlevel=9999
 set fsync
 set hlsearch
@@ -464,7 +468,9 @@ call SourceIfExists('/usr/share/asymptote/asy.vim')
 call SourceIfExists('/usr/share/asymptote/asy_filetype.vim')
 
 call SourceIfExists('/usr/share/gtags/gtags.vim')
-call SourceIfExists('/usr/share/gtags/gtags-cscope.vim')
+if !has('nvim')
+  call SourceIfExists('/usr/share/gtags/gtags-cscope.vim')
+endif
 
 if has('nvim')
   call SourceIfExists(expand(

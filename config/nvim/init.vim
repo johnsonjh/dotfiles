@@ -606,7 +606,7 @@ let g:startify_lists = [
   \   },
   \   { 'type':   'bookmarks',
   \     'header': [
-  \        '   [Startify] Bookmarks'
+  \       '   [Startify] Bookmarks'
   \     ]
   \   },
   \   { 'type':   function('s:nerdTreeBookmarks'),

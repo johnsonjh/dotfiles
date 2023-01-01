@@ -237,13 +237,13 @@ let g:plug_window = 'new'
 let g:rainbow_active = 1
 
 let g:rainbow_conf = {
-  \	  'guifgs': [
+  \   'guifgs': [
   \     'lightblue',
   \     'lightyellow',
   \     'lightcyan',
   \     'lightmagenta'
   \   ],
-  \	  'ctermfgs': [
+  \  'ctermfgs': [
   \     'lightblue',
   \     'lightyellow',
   \     'lightcyan',

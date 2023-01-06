@@ -59,7 +59,7 @@ try
   set switchbuf=uselast
   catch
 endtry
-set tabstop=4
+set tabstop=8
 set termguicolors
 set t_ut=
 set timeoutlen=350

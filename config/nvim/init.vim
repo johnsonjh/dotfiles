@@ -222,11 +222,11 @@ catch
   let g:osenv = 'UNKNOWN'
 endtry
 
-if (g:osenv != 'AIX')
-  let g:pandoc#after#modules#enabled = [
-    \   "ultisnips"
-    \ ]
-endif
+" if (g:osenv != 'AIX')
+"   let g:pandoc#after#modules#enabled = [
+"     \   "ultisnips"
+"     \ ]
+" endif
 
 let g:plug_threads = 32
 let g:plug_timeout = 120
@@ -261,9 +261,9 @@ let g:shellcheck_directive_highlight = 1
 let g:task_rc_override = 'rc.defaultheight=0'
 let g:task_rc_override = 'rc.defaultwidth=0'
 
-if (g:osenv != 'AIX')
-  let g:UltiSnipsEditSplit = "vertical"
-endif
+" if (g:osenv != 'AIX')
+"   let g:UltiSnipsEditSplit = "vertical"
+" endif
 
 let g:vim_markdown_conceal             = 0
 let g:vim_markdown_conceal_code_blocks = 0
@@ -416,11 +416,11 @@ call plug#begin()
   Plug 'https://github.com/rhysd/git-messenger.vim.git'
   Plug 'https://github.com/rickhowe/diffchar.vim.git'
   Plug 'https://github.com/shumphrey/fugitive-gitlab.vim.git'
-  if (g:osenv != 'AIX')
-    if has ('python3')
-      Plug 'https://github.com/SirVer/ultisnips.git'
-    endif
-  endif
+  " if (g:osenv != 'AIX')
+  "   if has ('python3')
+  "     Plug 'https://github.com/SirVer/ultisnips.git'
+  "   endif
+  " endif
   Plug 'https://github.com/skywind3000/vim-preview.git'
   Plug 'https://github.com/sodapopcan/vim-twiggy.git'
   Plug 'https://github.com/szw/vim-maximizer.git'

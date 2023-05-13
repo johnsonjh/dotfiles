@@ -700,7 +700,7 @@ endif
 
 augroup Ditto_Initialization
   autocmd!
-  silent! autocmd FileType markdown,text,tex DittoOn
+  silent! autocmd FileType markdown,text,tex DittoOff
   nmap <leader>di <Plug>ToggleDitto
 augroup end
 

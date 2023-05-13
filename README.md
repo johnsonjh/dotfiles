@@ -6,6 +6,7 @@
      are permitted in any medium without royalty provided the copyright
      notice and this notice are preserved.  This file is offered "AS-IS",
      without any warranty. -->
+
 # dotfiles
 
 ## Overview
@@ -13,28 +14,28 @@
 These are my dotfiles. There are many like them, but these
 are mine.
 
-My dotfiles are my best friend.  They are my life.  I must
+My dotfiles are my best friend. They are my life. I must
 master them as I must master my life.
 
-Without me, my dotfiles are useless.  Without my dotfiles,
-I am useless.  I must maintain my dotfiles true.  I must
+Without me, my dotfiles are useless. Without my dotfiles,
+I am useless. I must maintain my dotfiles true. I must
 have better dotfiles than my enemy who is trying to humble
-me.  I must awe him before he shames me.  I will ...
+me. I must awe him before he shames me. I will ...
 
 My dotfiles and I know that what counts on UNIX is not the
 processes that crash, the smashing of their stacks, nor the
-corefiles they leave behind.  We know that it is correctness
-that counts.  We will succeed ...
+corefiles they leave behind. We know that it is correctness
+that counts. We will succeed ...
 
 My dotfiles are human, even as I am human, because they are
-my life.  Thus, I will learn them as my brothers.  I will
+my life. Thus, I will learn them as my brothers. I will
 learn their weaknesses, their strengths, their parts, their
-accessories, their syntax, and their semantics.  I will keep
+accessories, their syntax, and their semantics. I will keep
 my dotfiles clean and ready, even as I am clean and ready.
-We will become part of each other.  We will ...
+We will become part of each other. We will ...
 
-Before God, I swear this creed.  My dotfiles and I are the
-defenders of my world.  We are the masters of our enemy.
+Before God, I swear this creed. My dotfiles and I are the
+defenders of my world. We are the masters of our enemy.
 We are the saviors of my life.
 
 So be it, until victory is ours and there is no chaos,
@@ -52,12 +53,12 @@ but perfection!
 
 These dotfiles are regularly used on:
 
-* AIX 7.2, 7.3
-* Cygwin 3.3.5
-* Darwin 21.5 (macOS 12.4)
-* FreeBSD 13.1
-* GNU/Linux
-* NetBSD 9.2
-* OpenBSD 7.0, 7.1
-* OpenIndiana 2021.10+
-* Solaris 11.4
+- AIX 7.2, 7.3
+- Cygwin 3.5.0
+- Darwin 22.4 (macOS 13.3)
+- FreeBSD 13.2
+- GNU/Linux
+- NetBSD 9.3
+- OpenBSD 7.2, 7.3
+- OpenIndiana 2021.10+
+- Solaris 11.4

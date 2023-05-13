@@ -330,6 +330,10 @@ endif
 
 autocmd SwapExists * let v:swapchoice = "o"
 
+if has('nvim')
+  let g:editorconfig = v:true
+endif
+
 call plug#begin()
   if has('nvim')
     Plug 'https://github.com/chentoast/marks.nvim.git'
@@ -344,6 +348,7 @@ call plug#begin()
        \ }
     Plug 'https://github.com/Xuyuanp/scrollbar.nvim'
   else
+    Plug 'editorconfig/editorconfig-vim'
     Plug 'https://github.com/noahfrederick/vim-neovim-defaults.git'
     Plug 'https://github.com/roxma/nvim-yarp.git'
     Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'

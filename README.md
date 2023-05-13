@@ -53,11 +53,11 @@ but perfection!
 These dotfiles are regularly used on:
 
 * AIX 7.2, 7.3
-* Cygwin 3.3.5
-* Darwin 21.5 (macOS 12.4)
-* FreeBSD 13.1
+* Cygwin 3.5.0
+* Darwin 22.4 (macOS 13.3)
+* FreeBSD 13.2
 * GNU/Linux
-* NetBSD 9.2
-* OpenBSD 7.0, 7.1
+* NetBSD 9.3
+* OpenBSD 7.2, 7.3
 * OpenIndiana 2021.10+
 * Solaris 11.4

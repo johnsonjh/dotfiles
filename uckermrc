@@ -1,15 +1,2 @@
-# SPDX-License-Identifier: FSFAP
-
-############################################################################
-#
-# Copyright (c) 2022-2023 Jeffrey H. Johnson <trnsz@pobox.com>
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.  This file is offered "AS-IS",
-# without any warranty.
-#
-############################################################################
-
 SET RECE PACK 1200
 SET SEND PACK 1200

@@ -55,7 +55,7 @@ These dotfiles are regularly used on:
 
 - AIX 7.2, 7.3
 - Cygwin 3.5.0
-- Darwin 22.4 (macOS 13.3)
+- Darwin 22.5 (macOS 13.4)
 - FreeBSD 13.2
 - GNU/Linux
 - NetBSD 9.3

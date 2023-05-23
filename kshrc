@@ -13,7 +13,15 @@
 #
 ###############################################################################
 
+# Import system settings
+if [ -f /etc/kshrc ]; then
+        . /etc/kshrc
+fi
+
+# Emacs-style line editing
 set -o emacs
+
+# Arrow keys
 alias __A=$(print '\0020') # ^P = up    = previous command
 alias __B=$(print '\0016') # ^N = down  = next command
 alias __C=$(print '\0006') # ^F = right = forward a character

@@ -93,3 +93,5 @@
 	pruneExpire = now
 [credential]
 	helper = cache --timeout 3600
+[gpg "ssh"]
+	allowedSignersFile = "${HOME:-}/.ssh/allowed_signers"

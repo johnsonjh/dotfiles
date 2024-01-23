@@ -58,6 +58,7 @@
 	side-by-side = false
 	dark = true
 	relative-paths = true
+	max-line-length = 2048
 [interactive]
 	diffFilter = delta --color-only
 [fetch]

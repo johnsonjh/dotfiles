@@ -3,7 +3,7 @@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" Copyright (c) 2022-2023 Jeffrey H. Johnson <trnsz@pobox.com>
+" Copyright (c) 2022-2024 Jeffrey H. Johnson <trnsz@pobox.com>
 "
 " Copying and distribution of this file, with or without modification,
 " are permitted in any medium without royalty provided the copyright
@@ -330,7 +330,9 @@ call plug#begin()
     Plug 'https://github.com/folke/todo-comments.nvim.git'
     Plug 'https://github.com/lambdalisue/pastefix.vim.git'
     Plug 'https://github.com/nvim-lua/plenary.nvim.git'
-    Plug 'https://github.com/sindrets/diffview.nvim.git'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter.git', {
+       \   'do': ':TSUpdate'
+       \ }
     Plug 'https://github.com/vimlab/split-term.vim'
     Plug 'https://github.com/windwp/nvim-spectre.git'
     Plug 'https://github.com/Shougo/deoplete.nvim.git', {

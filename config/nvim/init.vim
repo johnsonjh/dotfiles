@@ -25,7 +25,6 @@ set background=dark
 set autoindent
 set autoread
 set belloff=all
-set browsedir=buffer
 set conceallevel=0
 
 if !has('nvim')

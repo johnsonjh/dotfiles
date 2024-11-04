@@ -426,7 +426,6 @@ call plug#begin()
   Plug 'https://github.com/vim-scripts/autoload_cscope.vim.git'
   Plug 'https://github.com/vim-scripts/UniCycle.git'
   Plug 'https://github.com/voldikss/vim-mma.git'
-  Plug 'https://github.com/wateret/ifdef-heaven.vim.git'
   Plug 'https://github.com/weilbith/nerdtree_choosewin-plugin.git'
   Plug 'https://github.com/wellle/context.vim.git'
   Plug 'https://github.com/wellle/targets.vim.git'
@@ -461,19 +460,6 @@ call SourceIfExists('/usr/share/asymptote/asy_filetype.vim')
 call SourceIfExists('/usr/share/gtags/gtags.vim')
 if !has('nvim')
   call SourceIfExists('/usr/share/gtags/gtags-cscope.vim')
-endif
-
-if has('nvim')
-  call SourceIfExists(expand(
-     \  '$HOME/.local/share/nvim/plugged/ifdef-heaven.vim/ifdef-heaven.vim')
-     \ )
-else
-  try
-    call SourceIfExists(expand(
-       \  '$HOME/.vim/plugged/ifdef-heaven.vim/ifdef-heaven.vim')
-       \ )
-  catch
-  endtry
 endif
 
 function! LightlineReadonly()

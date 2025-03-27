@@ -51,7 +51,7 @@
 	notesRef = true
 	symlinks = true
 	autocrlf = false
-	filemode = false
+	fileMode = true
 	compression = 9
 [delta]
 	navigate = true

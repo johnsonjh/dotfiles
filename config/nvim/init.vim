@@ -352,7 +352,6 @@ call plug#begin()
   Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
   Plug 'https://github.com/dbmrq/vim-ditto.git'
   Plug 'https://github.com/dense-analysis/ale.git'
-  Plug 'https://github.com/direnv/direnv.vim.git'
   Plug 'https://github.com/drzel/vim-line-no-indicator.git'
   Plug 'https://github.com/easymotion/vim-easymotion.git'
   if (s:EnableVimGolangPlugins)
@@ -629,7 +628,6 @@ let g:vimwiki_list = [
   \   }
   \ ]
 
-map      f                   :call IfdefHeaven_WhereAmI()<CR>
 map      g#                  <Plug>(asterisk-g#)
 map      g*                  <Plug>(asterisk-g*)
 map      gz#                 <Plug>(asterisk-gz#)
@@ -658,6 +656,10 @@ noremap  <silent> <C-Up>     :<C-U>ObviousResizeUp<CR>
 omap     t                   <Plug>(easymotion-bd-tl)
 xmap     ga                  <Plug>(EasyAlign)
 map      <Leader>            <Plug>(easymotion-prefix)
+
+hi       CursorLine          cterm=NONE ctermbg=0
+hi       CursorColumn        cterm=NONE ctermbg=0
+nnoremap <Leader>c           :set cursorline! cursorcolumn!<CR>
 
 if has('nvim')
   nnoremap <Leader>S <Cmd>lua

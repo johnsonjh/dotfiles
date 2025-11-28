@@ -3,7 +3,7 @@
 
 ##########################################################################################
 #
-# Copyright (c) 2022-2024 Jeffrey H. Johnson <trnsz@pobox.com>
+# Copyright (c) 2022-2024 Jeffrey H. Johnson
 #
 # Copying and distribution of this file, with or without modification, are permitted in
 # any medium without royalty provided the copyright notice and this notice are preserved.
@@ -12,8 +12,8 @@
 ##########################################################################################
 
 [user]
-	email = trnsz@pobox.com
-	signingKey = AFAD6B15B7927C37801B1A0DEDBCB3EB023BC7ED
+	email = "johnsonjh.dev@gmail.com"
+	signingKey = 6D0799B498DAB092B180075DD7F013C93124B799
 	name = Jeffrey H. Johnson
 [color]
 	ui = true

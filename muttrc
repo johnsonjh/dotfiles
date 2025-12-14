@@ -1,0 +1,108 @@
+source ~/.mutt-private
+
+alternative_order text/plain text/enriched text/html
+
+auto_view text/html
+
+bind index G imap-fetch-mail
+
+set allow_ansi = yes
+set folder = imaps://imap.gmail.com/
+set from = "johnsonjh.dev@gmail.com"
+set header_cache = "~/.cache/mutt/headers"
+set imap_user = "johnsonjh.dev@gmail.com"
+set mailcap_sanitize = no
+set mbox = "imaps://imap.gmail.com/[Gmail]/All Mail"
+set pgp_autosign = yes
+set pgp_create_traditional = yes
+set pgp_replyencrypt = no
+set pgp_replysignencrypted = yes
+set pgp_replysign = yes
+set pgp_sign_as = 0x6D0799B498DAB092B180075DD7F013C93124B799
+set postponed = "imaps://imap.gmail.com/[Gmail]/Drafts"
+set realname = "Jeffrey H. Johnson"
+set record = "imaps://imap.gmail.com/[Gmail]/Sent Mail"
+set smtp_authenticators = "login"
+set smtp_url = "smtp://johnsonjh.dev@smtp.gmail.com:587/"
+#set spoolfile = "imaps://imap.gmail.com/[Gmail]/All Mail"
+set spoolfile = imaps://imap.gmail.com/INBOX
+set ssl_force_tls = yes
+set ssl_starttls = yes
+set tmpdir = "~/.cache/mutt/tmp"
+set user_agent = yes
+set wait_key = yes
+
+unignore Delivered-To
+unignore List-Id
+unignore List-Post
+unignore Mailer
+unignore Mailing-List
+unignore Organization
+unignore Reply-To
+unignore Resent-Date
+unignore Resent-From
+unignore Resent-Sender
+unignore Resent-To
+unignore Resent-User-Agent
+unignore Sender
+unignore Sender-Address
+unignore Thread-Topic
+unignore User-Agent
+unignore X-bible-quote
+unignore X-Bugzilla-ID
+unignore X-Bugzilla-URL
+unignore X-Complaints-To
+unignore X-EchoLink-Callsign
+unignore X-Editor
+unignore X-Forwarded-For
+unignore X-Forwarded-To
+unignore X-From
+unignore X-Generated-By
+unignore X-Gitea-Issue-ID
+unignore X-Gitea-Issue-Link
+unignore X-Gitea-Repository
+unignore X-Gitea-Repository-Link
+unignore X-Gitea-Repository-Path
+unignore X-Gitea-Sender
+unignore X-GitHub-Assignees
+unignore X-GitHub-Labels
+unignore X-GitHub-Sender
+unignore X-GitLab-Author
+unignore X-GitLab-Discussion-ID
+unignore X-GitLab-Epic-ID
+unignore X-GitLab-Issue-ID
+unignore X-GitLab-MergeRequest-ID
+unignore X-GitLab-Pipeline-Id
+unignore X-GitLab-Pipeline-Ref
+unignore X-GitLab-Pipeline-Status
+unignore X-GitLab-Project
+unignore X-GitLab-Project-Id
+unignore X-GitLab-Project-Path
+unignore X-GPG-Fingerprint
+unignore X-GPG-Public-Key
+unignore X-Homepage
+unignore X-Home-Page
+unignore X-mailer
+unignore X-Mailer
+unignore X-MailFrom
+unignore X-Mailinglist
+unignore X-Mailing-List
+unignore X-Newsreader
+unignore X-Nickname
+unignore X-OpenPGP-Key-Id
+unignore X-OpenPGP-Key-ID
+unignore X-PGP-Fingerprint
+unignore X-PGP-Key
+unignore X-PGP-KeyId
+unignore X-Powered-By
+unignore X-Referrer
+unignore X-RT-Originator
+unignore X-RT-Ticket
+unignore X-Sender
+unignore X-Slack-Message-ID
+unignore X-Slack-Team-ID
+unignore X-Telephone
+unignore X-To
+unignore X-Url
+unignore X-URL
+unignore X-User-Agent

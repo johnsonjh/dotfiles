@@ -5,6 +5,10 @@ alternative_order text/plain text/enriched text/html
 auto_view text/html
 
 bind index G imap-fetch-mail
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager \Cp sidebar-prev
+bind index,pager S sidebar-toggle-visible
 
 macro index,pager X "<delete-message><sync-mailbox>y<enter><imap-fetch-mail>" "Delete Forever (Gmail)"
 macro index,pager x "<save-message>=[Gmail]/Trash<enter><enter><sync-mailbox><imap-fetch-mail>" "Delete to Trash (Gmail)"
@@ -13,6 +17,8 @@ set allow_ansi = yes
 set folder = imaps://imap.gmail.com/
 set from = "johnsonjh.dev@gmail.com"
 set header_cache = "~/.cache/mutt/headers"
+set imap_check_subscribed = yes
+set imap_list_subscribed = yes
 set imap_user = "johnsonjh.dev@gmail.com"
 set mailcap_sanitize = no
 set mbox = "imaps://imap.gmail.com/[Gmail]/All Mail"
@@ -25,6 +31,10 @@ set pgp_sign_as = 0x6D0799B498DAB092B180075DD7F013C93124B799
 set postponed = "imaps://imap.gmail.com/[Gmail]/Drafts"
 set realname = "Jeffrey H. Johnson"
 set record = "imaps://imap.gmail.com/[Gmail]/Sent Mail"
+set sidebar_short_path = yes
+set mail_check_stats = yes
+set sidebar_visible = no
+set sidebar_width = 20
 set smtp_authenticators = "login"
 set smtp_url = "smtp://johnsonjh.dev@smtp.gmail.com:587/"
 set spoolfile = imaps://imap.gmail.com/INBOX

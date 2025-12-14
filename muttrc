@@ -24,7 +24,6 @@ set realname = "Jeffrey H. Johnson"
 set record = "imaps://imap.gmail.com/[Gmail]/Sent Mail"
 set smtp_authenticators = "login"
 set smtp_url = "smtp://johnsonjh.dev@smtp.gmail.com:587/"
-#set spoolfile = "imaps://imap.gmail.com/[Gmail]/All Mail"
 set spoolfile = imaps://imap.gmail.com/INBOX
 set ssl_force_tls = yes
 set ssl_starttls = yes

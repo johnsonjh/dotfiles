@@ -6,6 +6,9 @@ auto_view text/html
 
 bind index G imap-fetch-mail
 
+macro index,pager X "<delete-message><sync-mailbox>y<enter><imap-fetch-mail>" "Delete Forever (Gmail)"
+macro index,pager x "<save-message>=[Gmail]/Trash<enter><enter><sync-mailbox><imap-fetch-mail>" "Delete to Trash (Gmail)"
+
 set allow_ansi = yes
 set folder = imaps://imap.gmail.com/
 set from = "johnsonjh.dev@gmail.com"

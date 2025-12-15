@@ -1,0 +1,7 @@
+set text_flowed = no
+set pgp_decode_command = "cat %f"
+set pgp_clearsign_command = "gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --clear-sign %f"
+set crypt_use_gpgme = no
+set pgp_autoinline = yes
+
+source ~/.muttrc

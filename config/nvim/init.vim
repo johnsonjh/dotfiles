@@ -321,6 +321,7 @@ autocmd SwapExists * let v:swapchoice = "o"
 
 if has('nvim')
   let g:editorconfig = v:true
+  let g:conceallevel = 0
 endif
 
 call plug#begin()
